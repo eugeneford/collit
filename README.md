@@ -14,6 +14,26 @@ import { NoviColorPicker } from "react-color-tools"
 
 ```
 
+## Color Object
+
+```js
+{
+   hex: "#333",
+   rgb: {
+      r: 51,
+      g: 51,
+      b: 51,
+      a: 1
+   },
+   hsb: {
+      h: 0,
+      s: 0
+      l: 0.1
+      a: 1
+   }
+}
+```
+
 ## Parent Components
 
 ### NoviColorPicker
