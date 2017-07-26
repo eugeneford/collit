@@ -1,0 +1,67 @@
+{
+  "name": "react-color-tools",
+  "version": "0.8.0",
+  "description": "A Bunch of Tools for work with Colors in CSS way. Eg. Color Picker, Gradient Tool, Color Palette and more.",
+  "main": "dist/react-color-tools.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneford/react-color-tools.git"
+  },
+  "scripts": {
+    "webpack": "webpack",
+    "watch": "webpack --watch",
+    "gulp": "gulp watch"
+  },
+  "keywords": [
+    "color",
+    "picker",
+    "tool",
+    "gradient",
+    "wheel",
+    "input",
+    "coverter",
+    "validator",
+    "parser",
+    "ruler",
+    "swatch",
+    "saturation",
+    "lightness",
+    "brightness",
+    "hue",
+    "novi",
+    "enso"
+  ],
+  "author": "Eugene Ford",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "gulp": "^3.8.8",
+    "gulp-sass": "^2.3.1",
+    "require-dir": "^0.3.0",
+    "webpack": "^1.14.0",
+    "webpack-stream": "^3.2.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "es2016",
+      "es2017"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  }
+}

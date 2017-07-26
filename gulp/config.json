@@ -1,0 +1,6 @@
+{
+  "sass": {
+    "src": "./src/sass/*/*.scss",
+    "dest": "./dist/css"
+  } 
+}
