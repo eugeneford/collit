@@ -152,13 +152,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.isColorName = isColorName;
+	exports.isHex = isHex;
 
 	var _Colors = __webpack_require__(18);
 
 	var _Colors2 = _interopRequireDefault(_Colors);
+
+	var _CharCodes = __webpack_require__(19);
+
+	var _CharCodes2 = _interopRequireDefault(_CharCodes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -173,8 +178,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * var isNotColor = Validator.isColorName("avadakedavra"); // false
 	 */
 	function isColorName(name) {
-	  if (typeof name !== "string") throw new TypeError("Type of target name should be a String");
-	  return _Colors2.default.hasOwnProperty(name.toLowerCase());
+	    if (typeof name !== "string") throw new TypeError("Type of target name should be a String");
+	    return _Colors2.default.hasOwnProperty(name.toLowerCase());
+	}
+
+	/**
+	 * Check if target string is a valid hex color
+	 * @param color — target hex string to test
+	 * @throws TypeError — if type of color that was passed is not a string
+	 * @returns {boolean}
+	 *
+	 * @example
+	 * var isHex = isHex("#333"); // true
+	 * var isNotHex = isHex("#rgb"); // false
+	 */
+	function isHex(color) {
+	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
+	    // if color doesn't start with #
+	    if (color.charCodeAt(0) !== _CharCodes2.default.HASH) return false;
+	    // if a possible color doesn't consist of 4 (#333) or 7 chars (#333333)
+	    if (color.length !== 4 && color.length !== 7) return false;
+
+	    var i = void 0,
+	        char = void 0,
+	        colorInLowerCase = color.toLowerCase();
+	    // Try to identify a non-valid hex color while looping trough other chars starting after #
+	    for (i = 1; i < colorInLowerCase.length; i++) {
+	        char = colorInLowerCase.charCodeAt(i);
+	        // if char is not a valid hex number
+	        if ((char < _CharCodes2.default.ZERO || char > _CharCodes2.default.NINE) && (char < _CharCodes2.default.A || char > _CharCodes2.default.F)) return false;
+	    }
+
+	    // Otherwise, string is a hex color — return true
+	    return true;
 	}
 
 /***/ }),
@@ -527,6 +563,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "whitesmoke": { hex: "#f5f5f5", rgb: { r: 245, g: 245, b: 245 }, hsl: { h: 0, s: 0, l: 0.96 } },
 	    "yellowgreen": { hex: "#9acd32", rgb: { r: 154, g: 205, b: 50 }, hsl: { h: 80, s: 0.61, l: 0.5 } },
 	    "rebeccapurple": { hex: "#663399", rgb: { r: 102, g: 51, b: 153 }, hsl: { h: 270, s: 0.5, l: 0.4 } }
+	};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    "HASH": 35,
+	    "ZERO": 48,
+	    "ONE": 49,
+	    "TWO": 50,
+	    "THREE": 51,
+	    "FOUR": 52,
+	    "FIVE": 53,
+	    "SIX": 54,
+	    "SEVEN": 55,
+	    "EIGHT": 56,
+	    "NINE": 57,
+	    "A": 97,
+	    "B": 98,
+	    "C": 99,
+	    "D": 100,
+	    "E": 101,
+	    "F": 102
 	};
 
 /***/ })

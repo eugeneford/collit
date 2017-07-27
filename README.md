@@ -311,9 +311,16 @@ import { Validator } from "react-color-tools";
 
 var isColor = Validator.isColorName("black"); // true
 var isNotColor = Validator.isColorName("avadakedavra"); // false
-``` 
+```
 
 #### isHex(color)
+Check if target string is a valid hex color
+```js
+import { Validator } from "react-color-tools";
+
+var isHex = isHex("#333"); // true
+var isNotHex = isHex("#rgb"); // false 
+```js
 
 #### isRgb(color)
 
