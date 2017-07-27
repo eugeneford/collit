@@ -2,6 +2,14 @@ var Parser = ColorTools.Parser;
 
 describe("Parser Helper", function() {
     describe("parseColorName(value)", function() {
+        it("Threw a TypeError when a non-string value was passed as parameter", function () {
+            expect(function(){ Parser.parseColorName(1) }).toThrowError(TypeError);
+        });
+
+        it("Threw an Error when invalid color name was passed", function () {
+            expect(function(){ Parser.parseColorName("avadakedavra") }).toThrowError(Error);
+        });
+
         it("Correctly parsed \"black\" color", function () {
             var color = Parser.parseColorName("black");
             expect(color).toEqual({ hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}});
@@ -375,6 +383,361 @@ describe("Parser Helper", function() {
         it("Correctly parsed \"lavenderblush\" color", function () {
             var color = Parser.parseColorName("lavenderblush");
             expect(color).toEqual({ hex: "#fff0f5", rgb: {r:255, g:240, b:245}, hsl: {h:340, s: 1, l: .97}});
+        });
+
+        it("Correctly parsed \"lawngreen\" color", function () {
+            var color = Parser.parseColorName("lawngreen");
+            expect(color).toEqual({ hex: "#7cfc00", rgb: {r:124, g:252, b:0}, hsl: {h:90, s: 1, l: .49}});
+        });
+
+        it("Correctly parsed \"lemonchiffon\" color", function () {
+            var color = Parser.parseColorName("lemonchiffon");
+            expect(color).toEqual({ hex: "#fffacd", rgb: {r:255, g:250, b:205}, hsl: {h:54, s: 1, l: .9}});
+        });
+
+        it("Correctly parsed \"lightblue\" color", function () {
+            var color = Parser.parseColorName("lightblue");
+            expect(color).toEqual({ hex: "#add8e6", rgb: {r:173, g:216, b:230}, hsl: {h:195, s: .53, l: .79}});
+        });
+
+        it("Correctly parsed \"lightcoral\" color", function () {
+            var color = Parser.parseColorName("lightcoral");
+            expect(color).toEqual({ hex: "#f08080", rgb: {r:240, g:128, b:128}, hsl: {h:0, s: .79, l: .72}});
+        });
+
+        it("Correctly parsed \"lightcyan\" color", function () {
+            var color = Parser.parseColorName("lightcyan");
+            expect(color).toEqual({ hex: "#e0ffff", rgb: {r:224, g:255, b:255}, hsl: {h:180, s: 1, l: .94}});
+        });
+
+        it("Correctly parsed \"lightgoldenrodyellow\" color", function () {
+            var color = Parser.parseColorName("lightgoldenrodyellow");
+            expect(color).toEqual({ hex: "#fafad2", rgb: {r:250, g:250, b:210}, hsl: {h:60, s: .8, l: .9}});
+        });
+
+        it("Correctly parsed \"lightgray\" color", function () {
+            var color = Parser.parseColorName("lightgray");
+            expect(color).toEqual({ hex: "#d3d3d3", rgb: {r:211, g:211, b:211}, hsl: {h:0, s: 0, l: .83}});
+        });
+
+        it("Correctly parsed \"lightgrey\" color", function () {
+            var color = Parser.parseColorName("lightgrey");
+            expect(color).toEqual({ hex: "#d3d3d3", rgb: {r:211, g:211, b:211}, hsl: {h:0, s: 0, l: .83}});
+        });
+
+        it("Correctly parsed \"lightgreen\" color", function () {
+            var color = Parser.parseColorName("lightgreen");
+            expect(color).toEqual({ hex: "#90ee90", rgb: {r:144, g:238, b:144}, hsl: {h:120, s: .73, l: .75}});
+        });
+
+        it("Correctly parsed \"lightpink\" color", function () {
+            var color = Parser.parseColorName("lightpink");
+            expect(color).toEqual({ hex: "#ffb6c1", rgb: {r:255, g:182, b:193}, hsl: {h:351, s: 1, l: .86}});
+        });
+
+        it("Correctly parsed \"lightsalmon\" color", function () {
+            var color = Parser.parseColorName("lightsalmon");
+            expect(color).toEqual({ hex: "#ffa07a", rgb: {r:255, g:160, b:122}, hsl: {h:17, s: 1, l: .74}});
+        });
+
+        it("Correctly parsed \"lightseagreen\" color", function () {
+            var color = Parser.parseColorName("lightseagreen");
+            expect(color).toEqual({ hex: "#20b2aa", rgb: {r:32, g:178, b:170}, hsl: {h:177, s: .7, l: .41}});
+        });
+
+        it("Correctly parsed \"lightskyblue\" color", function () {
+            var color = Parser.parseColorName("lightskyblue");
+            expect(color).toEqual({ hex: "#87cefa", rgb: {r:135, g:206, b:250}, hsl: {h:203, s: .92, l: .75}});
+        });
+
+        it("Correctly parsed \"lightslategray\" color", function () {
+            var color = Parser.parseColorName("lightslategray");
+            expect(color).toEqual({ hex: "#778899", rgb: {r:119, g:136, b:153}, hsl: {h:210, s: .14, l: .53}});
+        });
+
+        it("Correctly parsed \"lightslategrey\" color", function () {
+            var color = Parser.parseColorName("lightslategrey");
+            expect(color).toEqual({ hex: "#778899", rgb: {r:119, g:136, b:153}, hsl: {h:210, s: .14, l: .53}});
+        });
+
+        it("Correctly parsed \"lightyellow\" color", function () {
+            var color = Parser.parseColorName("lightyellow");
+            expect(color).toEqual({ hex: "#ffffe0", rgb: {r:255, g:255, b:224}, hsl: {h:60, s: 1, l: .94}});
+        });
+
+        it("Correctly parsed \"limegreen\" color", function () {
+            var color = Parser.parseColorName("limegreen");
+            expect(color).toEqual({ hex: "#32cd32", rgb: {r:50, g:205, b:50}, hsl: {h:120, s: .61, l: .5}});
+        });
+
+        it("Correctly parsed \"linen\" color", function () {
+            var color = Parser.parseColorName("linen");
+            expect(color).toEqual({ hex: "#faf0e6", rgb: {r:250, g:240, b:230}, hsl: {h:30, s: .67, l: .94}});
+        });
+
+        it("Correctly parsed \"magenta\" color", function () {
+            var color = Parser.parseColorName("magenta");
+            expect(color).toEqual({ hex: "#ff00ff", rgb: {r:255, g:0, b:255}, hsl: {h:300, s: 1, l: .5}});
+        });
+
+        it("Correctly parsed \"mediumaquamarine\" color", function () {
+            var color = Parser.parseColorName("mediumaquamarine");
+            expect(color).toEqual({ hex: "#66cdaa", rgb: {r:102, g:205, b:170}, hsl: {h:160, s: .51, l: .6}});
+        });
+
+        it("Correctly parsed \"mediumblue\" color", function () {
+            var color = Parser.parseColorName("mediumblue");
+            expect(color).toEqual({ hex: "#0000cd", rgb: {r:0, g:0, b:205}, hsl: {h:240, s: 1, l: .4}});
+        });
+
+        it("Correctly parsed \"mediumorchid\" color", function () {
+            var color = Parser.parseColorName("mediumorchid");
+            expect(color).toEqual({ hex: "#ba55d3", rgb: {r:186, g:85, b:211}, hsl: {h:288, s: .59, l: .58}});
+        });
+
+        it("Correctly parsed \"mediumpurple\" color", function () {
+            var color = Parser.parseColorName("mediumpurple");
+            expect(color).toEqual({ hex: "#9370db", rgb: {r:147, g:112, b:219}, hsl: {h:260, s: .6, l: .65}});
+        });
+
+        it("Correctly parsed \"mediumseagreen\" color", function () {
+            var color = Parser.parseColorName("mediumseagreen");
+            expect(color).toEqual({ hex: "#3cb371", rgb: {r:60, g:179, b:113}, hsl: {h:147, s: .5, l: .47}});
+        });
+
+        it("Correctly parsed \"mediumslateblue\" color", function () {
+            var color = Parser.parseColorName("mediumslateblue");
+            expect(color).toEqual({ hex: "#7b68ee", rgb: {r:123, g:104, b:238}, hsl: {h:249, s: .8, l: .67}});
+        });
+
+        it("Correctly parsed \"mediumspringgreen\" color", function () {
+            var color = Parser.parseColorName("mediumspringgreen");
+            expect(color).toEqual({ hex: "#00fa9a", rgb: {r:0, g:250, b:154}, hsl: {h:157, s: 1, l: .49}});
+        });
+
+        it("Correctly parsed \"mediumturquoise\" color", function () {
+            var color = Parser.parseColorName("mediumturquoise");
+            expect(color).toEqual({ hex: "#48d1cc", rgb: {r:72, g:209, b:204}, hsl: {h:178, s: .6, l: .55}});
+        });
+
+        it("Correctly parsed \"mediumvioletred\" color", function () {
+            var color = Parser.parseColorName("mediumvioletred");
+            expect(color).toEqual({ hex: "#c71585", rgb: {r:199, g:21, b:133}, hsl: {h:322, s: .81, l: .43}});
+        });
+
+        it("Correctly parsed \"midnightblue\" color", function () {
+            var color = Parser.parseColorName("midnightblue");
+            expect(color).toEqual({ hex: "#191970", rgb: {r:25, g:25, b:112}, hsl: {h:240, s: .64, l: .27}});
+        });
+
+        it("Correctly parsed \"mintcream\" color", function () {
+            var color = Parser.parseColorName("mintcream");
+            expect(color).toEqual({ hex: "#f5fffa", rgb: {r:245, g:255, b:250}, hsl: {h:150, s: 1, l: .98}});
+        });
+
+        it("Correctly parsed \"mistyrose\" color", function () {
+            var color = Parser.parseColorName("mistyrose");
+            expect(color).toEqual({ hex: "#ffe4e1", rgb: {r:255, g:228, b:225}, hsl: {h:6, s: 1, l: .94}});
+        });
+
+        it("Correctly parsed \"moccasin\" color", function () {
+            var color = Parser.parseColorName("moccasin");
+            expect(color).toEqual({ hex: "#ffe4b5", rgb: {r:255, g:228, b:181}, hsl: {h:38, s: 1, l: .85}});
+        });
+
+        it("Correctly parsed \"navajowhite\" color", function () {
+            var color = Parser.parseColorName("navajowhite");
+            expect(color).toEqual({ hex: "#ffdead", rgb: {r:255, g:222, b:173}, hsl: {h:36, s: 1, l: .84}});
+        });
+
+        it("Correctly parsed \"oldlace\" color", function () {
+            var color = Parser.parseColorName("oldlace");
+            expect(color).toEqual({ hex: "#fdf5e6", rgb: {r:253, g:245, b:230}, hsl: {h:39, s: .85, l: .95}});
+        });
+
+        it("Correctly parsed \"olivedrab\" color", function () {
+            var color = Parser.parseColorName("olivedrab");
+            expect(color).toEqual({ hex: "#6b8e23", rgb: {r:107, g:142, b:35}, hsl: {h:80, s: .6, l: .35}});
+        });
+
+        it("Correctly parsed \"orangered\" color", function () {
+            var color = Parser.parseColorName("orangered");
+            expect(color).toEqual({ hex: "#ff4500", rgb: {r:255, g:69, b:0}, hsl: {h:16, s: 1, l: .5}});
+        });
+
+        it("Correctly parsed \"orchid\" color", function () {
+            var color = Parser.parseColorName("orchid");
+            expect(color).toEqual({ hex: "#da70d6", rgb: {r:218, g:112, b:214}, hsl: {h:302, s: .59, l: .65}});
+        });
+
+        it("Correctly parsed \"palegoldenrod\" color", function () {
+            var color = Parser.parseColorName("palegoldenrod");
+            expect(color).toEqual({ hex: "#eee8aa", rgb: {r:238, g:232, b:170}, hsl: {h:55, s: .67, l: .80}});
+        });
+
+        it("Correctly parsed \"palegreen\" color", function () {
+            var color = Parser.parseColorName("palegreen");
+            expect(color).toEqual({ hex: "#98fb98", rgb: {r:152, g:251, b:152}, hsl: {h:120, s: .93, l: .79}});
+        });
+
+        it("Correctly parsed \"paleturquoise\" color", function () {
+            var color = Parser.parseColorName("paleturquoise");
+            expect(color).toEqual({ hex: "#afeeee", rgb: {r:175, g:238, b:238}, hsl: {h:180, s: .65, l: .81}});
+        });
+
+        it("Correctly parsed \"palevioletred\" color", function () {
+            var color = Parser.parseColorName("palevioletred");
+            expect(color).toEqual({ hex: "#db7093", rgb: {r:219, g:112, b:147}, hsl: {h:340, s: .6, l: .65}});
+        });
+
+        it("Correctly parsed \"papayawhip\" color", function () {
+            var color = Parser.parseColorName("papayawhip");
+            expect(color).toEqual({ hex: "#ffefd5", rgb: {r:255, g:239, b:213}, hsl: {h:37, s: 1, l: .92}});
+        });
+
+        it("Correctly parsed \"peachpuff\" color", function () {
+            var color = Parser.parseColorName("peachpuff");
+            expect(color).toEqual({ hex: "#ffdab9", rgb: {r:255, g:218, b:185}, hsl: {h:28, s: 1, l: .86}});
+        });
+
+        it("Correctly parsed \"peru\" color", function () {
+            var color = Parser.parseColorName("peru");
+            expect(color).toEqual({ hex: "#cd853f", rgb: {r:205, g:133, b:63}, hsl: {h:30, s: .59, l: .53}});
+        });
+
+        it("Correctly parsed \"pink\" color", function () {
+            var color = Parser.parseColorName("pink");
+            expect(color).toEqual({ hex: "#ffc0cb", rgb: {r:255, g:192, b:203}, hsl: {h:350, s: 1, l: .88}});
+        });
+
+        it("Correctly parsed \"plum\" color", function () {
+            var color = Parser.parseColorName("plum");
+            expect(color).toEqual({ hex: "#dda0dd", rgb: {r:221, g:160, b:221}, hsl: {h:300, s: .47, l: .75}});
+        });
+
+        it("Correctly parsed \"powderblue\" color", function () {
+            var color = Parser.parseColorName("powderblue");
+            expect(color).toEqual({ hex: "#b0e0e6", rgb: {r:176, g:224, b:230}, hsl: {h:187, s: .52, l: .8}});
+        });
+
+        it("Correctly parsed \"rosybrown\" color", function () {
+            var color = Parser.parseColorName("rosybrown");
+            expect(color).toEqual({ hex: "#bc8f8f", rgb: {r:188, g:143, b:143}, hsl: {h:0, s: .25, l: .65}});
+        });
+
+        it("Correctly parsed \"royalblue\" color", function () {
+            var color = Parser.parseColorName("royalblue");
+            expect(color).toEqual({ hex: "#4169e1", rgb: {r:65, g:105, b:225}, hsl: {h:225, s: .73, l: .57}});
+        });
+
+        it("Correctly parsed \"saddlebrown\" color", function () {
+            var color = Parser.parseColorName("saddlebrown");
+            expect(color).toEqual({ hex: "#8b4513", rgb: {r:139, g:69, b:19}, hsl: {h:25, s: .76, l: .31}});
+        });
+
+        it("Correctly parsed \"salmon\" color", function () {
+            var color = Parser.parseColorName("salmon");
+            expect(color).toEqual({ hex: "#fa8072", rgb: {r:250, g:128, b:114}, hsl: {h:6, s: .93, l: .71}});
+        });
+
+        it("Correctly parsed \"sandybrown\" color", function () {
+            var color = Parser.parseColorName("sandybrown");
+            expect(color).toEqual({ hex: "#f4a460", rgb: {r:244, g:164, b:96}, hsl: {h:28, s: .87, l: .67}});
+        });
+
+        it("Correctly parsed \"seagreen\" color", function () {
+            var color = Parser.parseColorName("seagreen");
+            expect(color).toEqual({ hex: "#2e8b57", rgb: {r:46, g:139, b:87}, hsl: {h:146, s: .5, l: .36}});
+        });
+
+        it("Correctly parsed \"seashell\" color", function () {
+            var color = Parser.parseColorName("seashell");
+            expect(color).toEqual({ hex: "#fff5ee", rgb: {r:255, g:245, b:238}, hsl: {h:25, s: 1, l: .97}});
+        });
+
+        it("Correctly parsed \"sienna\" color", function () {
+            var color = Parser.parseColorName("sienna");
+            expect(color).toEqual({ hex: "#a0522d", rgb: {r:160, g:82, b:45}, hsl: {h:19, s: .56, l: .4}});
+        });
+
+        it("Correctly parsed \"skyblue\" color", function () {
+            var color = Parser.parseColorName("skyblue");
+            expect(color).toEqual({ hex: "#87ceeb", rgb: {r:135, g:206, b:235}, hsl: {h:197, s: .71, l: .73}});
+        });
+
+        it("Correctly parsed \"slateblue\" color", function () {
+            var color = Parser.parseColorName("slateblue");
+            expect(color).toEqual({ hex: "#6a5acd", rgb: {r:106, g:90, b:205}, hsl: {h:248, s: .53, l: .58}});
+        });
+
+        it("Correctly parsed \"slategray\" color", function () {
+            var color = Parser.parseColorName("slategray");
+            expect(color).toEqual({ hex: "#708090", rgb: {r:112, g:128, b:144}, hsl: {h:210, s: .13, l: .5}});
+        });
+
+        it("Correctly parsed \"slategrey\" color", function () {
+            var color = Parser.parseColorName("slategrey");
+            expect(color).toEqual({ hex: "#708090", rgb: {r:112, g:128, b:144}, hsl: {h:210, s: .13, l: .5}});
+        });
+
+        it("Correctly parsed \"snow\" color", function () {
+            var color = Parser.parseColorName("snow");
+            expect(color).toEqual({ hex: "#fffafa", rgb: {r:255, g:250, b:250}, hsl: {h:0, s: 1, l: .99}});
+        });
+
+        it("Correctly parsed \"springgreen\" color", function () {
+            var color = Parser.parseColorName("springgreen");
+            expect(color).toEqual({ hex: "#00ff7f", rgb: {r:0, g:255, b:127}, hsl: {h:150, s: 1, l: .5}});
+        });
+
+        it("Correctly parsed \"steelblue\" color", function () {
+            var color = Parser.parseColorName("steelblue");
+            expect(color).toEqual({ hex: "#4682b4", rgb: {r:70, g:130, b:180}, hsl: {h:207, s: .44, l: .49}});
+        });
+
+        it("Correctly parsed \"tan\" color", function () {
+            var color = Parser.parseColorName("tan");
+            expect(color).toEqual({ hex: "#d2b48c", rgb: {r:210, g:180, b:140}, hsl: {h:34, s: .44, l: .69}});
+        });
+
+        it("Correctly parsed \"thistle\" color", function () {
+            var color = Parser.parseColorName("thistle");
+            expect(color).toEqual({ hex: "#d8bfd8", rgb: {r:216, g:191, b:216}, hsl: {h:300, s: .24, l: .8}});
+        });
+
+        it("Correctly parsed \"tomato\" color", function () {
+            var color = Parser.parseColorName("tomato");
+            expect(color).toEqual({ hex: "#ff6347", rgb: {r:255, g:99, b:71}, hsl: {h:9, s: 1, l: .64}});
+        });
+
+        it("Correctly parsed \"turquoise\" color", function () {
+            var color = Parser.parseColorName("turquoise");
+            expect(color).toEqual({ hex: "#40e0d0", rgb: {r:64, g:224, b:208}, hsl: {h:174, s: .72, l: .56}});
+        });
+
+        it("Correctly parsed \"violet\" color", function () {
+            var color = Parser.parseColorName("violet");
+            expect(color).toEqual({ hex: "#ee82ee", rgb: {r:238, g:130, b:238}, hsl: {h:300, s: .76, l: .72}});
+        });
+
+        it("Correctly parsed \"wheat\" color", function () {
+            var color = Parser.parseColorName("wheat");
+            expect(color).toEqual({ hex: "#f5deb3", rgb: {r:245, g:222, b:179}, hsl: {h:39, s: .77, l: .83}});
+        });
+
+        it("Correctly parsed \"whitesmoke\" color", function () {
+            var color = Parser.parseColorName("whitesmoke");
+            expect(color).toEqual({ hex: "#f5f5f5", rgb: {r:245, g:245, b:245}, hsl: {h:0, s: 0, l: .96}});
+        });
+
+        it("Correctly parsed \"yellowgreen\" color", function () {
+            var color = Parser.parseColorName("yellowgreen");
+            expect(color).toEqual({ hex: "#9acd32", rgb: {r:154, g:205, b:50}, hsl: {h:80, s: .61, l: .5}});
+        });
+
+        it("Correctly parsed \"rebeccapurple\" color", function () {
+            var color = Parser.parseColorName("rebeccapurple");
+            expect(color).toEqual({ hex: "#663399", rgb: {r:102, g:51, b:153}, hsl: {h:270, s: .5, l: .4}});
         });
     });
 
