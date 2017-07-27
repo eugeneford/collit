@@ -277,33 +277,62 @@ import { Ruler } from "react-color-tools"
 
 ### Convertor
 
-```js
-import { Convertor } from "react-color-tools"
-
-...
-
-```
 
 #### hexToRgb(hex)
+Converts an HEX color value to RGB.
 
-#### hexToHsb(hex)
+```js
+import { Converter } from "react-color-tools";
+
+var rgb = Converter.hexToRgb("#333"); // rgb => {r:51, g:51, b: 51};
+```
+
+#### hexToHsl(hex)
+Converts an HEX color value to HSL.
+> Converting hex to hsl is done using a additional converting to RGB. HEX -> RGB -> HSL.
+
+```js
+import { Converter } from "react-color-tools";
+
+var hsl = Converter.hexToHsl("#333"); // hsl => {h: 0, s: 0, l: 0.2};
+```
 
 #### rgbToHex(rgb)
+Converts an RGB color value to HEX.
+```js
+import { Converter } from "react-color-tools";
 
-#### rgbToHsb(rgb)
+var hex = Converter.rgbToHex({r: 51, g: 51, b: 51}); // hex => "#333";
+```
 
-#### hsbToHex(hsb)
+#### rgbToHsl(rgb)
+Converts an RGB color value to HSL.
+```js
+import { Converter } from "react-color-tools";
 
-#### hsbToRgb(hsb)
+var hsl = Converter.rgbToHsl({r: 11, g: 11, b: 11}); // hsl => {h: 0, s: 0, l: 0.04};
+```
+
+#### hslToHex(hsl)
+Converts an HSL color value to Hex.
+> Converting hsl to hex is done using a additional converting to RGB. HSL -> RGB -> HEX.
+
+```js
+import { Converter } from "react-color-tools";
+
+var hex = Converter.hslToHex({h: 0, s: 0.5, l: 0.3}); // hex => "#732626;
+```
+
+#### hslToRgb(hsl)
+Converts an HSL color value to RGB.
+```js
+import { Converter } from "react-color-tools";
+
+var rgb = Converter.hslToRgb({h: 300, s: 0.5, l: 0.5}); // rgb => {r: 191, g: 64, b: 191};
+```
 
 ### Validator
 
-```js
-import { Validator } from "react-color-tools"
-
-...
-
-```
 #### isColorName(name)
 Check if target name is a valid CSS1, CSS2.1, CSS3 color name
 ```js
