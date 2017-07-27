@@ -1,5 +1,5 @@
 # react-color-tools
-A Bunch of React components, widgets and JS Helpers for work with color eg. color picker, palette, gradient tool, color parser, converter, validator and more.
+A Bunch of Tools for work with Colors in CSS way. Eg. Color Picker, Gradient Tool, Color Palette and more.
 
 ## How to Install
 
@@ -14,25 +14,19 @@ import { NoviColorPicker } from "react-color-tools"
 
 ```
 
-## Color Object
+## ColorInfo object
+The entire logic of components and modules is based on use of the ColorInfo object, which describes a specific color as a set of hex, rgb and hsl values.
 
 ```js
 {
    hex: "#333",
-   rgb: {
-      r: 51,
-      g: 51,
-      b: 51,
-      a: 1
+   rgb: { r: 51, g: 51, b: 51, a: 1
    },
-   hsb: {
-      h: 0,
-      s: 0
-      l: 0.1
-      a: 1
-   }
-}
+   hsl: { h: 0, s: 0 l: 0.1 a: 1 }
+} 
 ```
+
+A alpha-key inside the rgb and hsl values is optional and can be omitted.
 
 ## Parent Components
 
