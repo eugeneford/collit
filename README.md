@@ -1,5 +1,5 @@
 # react-color-tools
-A Bunch of Tools for work with Colors in CSS way. Eg. Color Picker, Gradient Tool, Color Palette and more.
+A Bunch of React components, widgets and JS Helpers for work with color eg. color picker, palette, gradient tool, color parser, converter, validator and more.
 
 ## How to Install
 
