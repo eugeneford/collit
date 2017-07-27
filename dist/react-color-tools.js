@@ -64,63 +64,63 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Validator = _interopRequireWildcard(_Validator);
 
-	var _Parser = __webpack_require__(5);
+	var _Parser = __webpack_require__(3);
 
 	var Parser = _interopRequireWildcard(_Parser);
 
-	var _Ruler = __webpack_require__(6);
+	var _Ruler = __webpack_require__(4);
 
 	var _Ruler2 = _interopRequireDefault(_Ruler);
 
-	var _Gradient = __webpack_require__(7);
+	var _Gradient = __webpack_require__(5);
 
 	var _Gradient2 = _interopRequireDefault(_Gradient);
 
-	var _Input = __webpack_require__(8);
+	var _Input = __webpack_require__(6);
 
 	var _Input2 = _interopRequireDefault(_Input);
 
-	var _Swatch = __webpack_require__(9);
+	var _Swatch = __webpack_require__(7);
 
 	var _Swatch2 = _interopRequireDefault(_Swatch);
 
-	var _Saturation = __webpack_require__(10);
+	var _Saturation = __webpack_require__(8);
 
 	var _Saturation2 = _interopRequireDefault(_Saturation);
 
-	var _Hue = __webpack_require__(11);
+	var _Hue = __webpack_require__(9);
 
 	var _Hue2 = _interopRequireDefault(_Hue);
 
-	var _Opacity = __webpack_require__(12);
+	var _Opacity = __webpack_require__(10);
 
 	var _Opacity2 = _interopRequireDefault(_Opacity);
 
-	var _Lightness = __webpack_require__(13);
+	var _Lightness = __webpack_require__(11);
 
 	var _Lightness2 = _interopRequireDefault(_Lightness);
 
-	var _Wheel = __webpack_require__(14);
+	var _Wheel = __webpack_require__(12);
 
 	var _Wheel2 = _interopRequireDefault(_Wheel);
 
-	var _NoviColorPicker = __webpack_require__(15);
+	var _NoviColorPicker = __webpack_require__(13);
 
 	var _NoviColorPicker2 = _interopRequireDefault(_NoviColorPicker);
 
-	var _NoviGradientTool = __webpack_require__(16);
+	var _NoviGradientTool = __webpack_require__(14);
 
 	var _NoviGradientTool2 = _interopRequireDefault(_NoviGradientTool);
 
-	var _EnsoColorPicker = __webpack_require__(17);
+	var _EnsoColorPicker = __webpack_require__(15);
 
 	var _EnsoColorPicker2 = _interopRequireDefault(_EnsoColorPicker);
 
-	var _EnsoGradientTool = __webpack_require__(18);
+	var _EnsoGradientTool = __webpack_require__(16);
 
 	var _EnsoGradientTool2 = _interopRequireDefault(_EnsoGradientTool);
 
-	var _EnsoGradientRuler = __webpack_require__(19);
+	var _EnsoGradientRuler = __webpack_require__(17);
 
 	var _EnsoGradientRuler2 = _interopRequireDefault(_EnsoGradientRuler);
 
@@ -333,11 +333,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.isColorName = isColorName;
 	exports.isHex = isHex;
 
-	var _Colors = __webpack_require__(3);
+	var _Colors = __webpack_require__(18);
 
 	var _Colors2 = _interopRequireDefault(_Colors);
 
-	var _CharCodes = __webpack_require__(4);
+	var _CharCodes = __webpack_require__(19);
 
 	var _CharCodes2 = _interopRequireDefault(_CharCodes);
 
@@ -391,6 +391,199 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.parseColorName = parseColorName;
+
+	var _Colors = __webpack_require__(18);
+
+	var _Colors2 = _interopRequireDefault(_Colors);
+
+	var _Validator = __webpack_require__(2);
+
+	var Validator = _interopRequireWildcard(_Validator);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Parse a valid CSS1, CSS2.1, CSS3 color name into a set of hex, rgb and hsl values
+	 * @param name — a string with specified color name
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was invalid
+	 * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseColorName("black"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
+	 */
+	function parseColorName(name) {
+	  if (typeof name !== "string") throw new TypeError("Type of target colorName should be a String");
+	  if (!Validator.isColorName(name)) throw new Error("Invalid color name");
+	  return _Colors2.default[name.toLowerCase()];
+	}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -549,7 +742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }),
-/* 4 */
+/* 19 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -576,199 +769,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "E": 101,
 	    "F": 102
 	};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.parseColorName = parseColorName;
-
-	var _Colors = __webpack_require__(3);
-
-	var _Colors2 = _interopRequireDefault(_Colors);
-
-	var _Validator = __webpack_require__(2);
-
-	var Validator = _interopRequireWildcard(_Validator);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/**
-	 * Parse a valid CSS1, CSS2.1, CSS3 color name into a set of hex, rgb and hsl values
-	 * @param name — a string with specified color name
-	 * @throws TypeError — if type of value passed to function was not a string
-	 * @throws Error — if color name passed to function was invalid
-	 * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
-	 *
-	 * @example
-	 * var color = Parser.parseColorName("black"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
-	 */
-	function parseColorName(name) {
-	  if (typeof name !== "string") throw new TypeError("Type of target colorName should be a String");
-	  if (!Validator.isColorName(name)) throw new Error("Invalid color name");
-	  return _Colors2.default[name.toLowerCase()];
-	}
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
 
 /***/ })
 /******/ ])
