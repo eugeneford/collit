@@ -319,8 +319,8 @@ Check if target string is a valid hex color
 import { Validator } from "react-color-tools";
 
 var isHex = isHex("#333"); // true
-var isNotHex = isHex("#rgb"); // false 
-```js
+var isNotHex = isHex("#rgb"); // false
+``` 
 
 #### isRgb(color)
 
