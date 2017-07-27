@@ -1,3 +1,4 @@
+import * as Validator from "./Validator";
 /**
  * Converts an HEX color value to RGB.
  *
@@ -8,7 +9,8 @@
  * rgb = Converter.hexToRgb("#333"); // rgb => {r:51, g:51, b: 51};
  */
 export function hexToRgb(hex) {
-    if (typeof hex !== 'string') throw new Error(`Error! ${hex} is not a String!`);
+    if (typeof hex !== 'string') throw new TypeError(`Type of ${hex} is not a String!`);
+    if (!Validator.isHex(hex)) throw new Error("Invalid hex color");
 
     let color = hex;
     // Remove "#" from string
@@ -48,6 +50,9 @@ export function hexToHsl(hex) {
  * hex = Converter.rgbToHex({r: 51, g: 51, b: 51}); // hex => "#333";
  */
 export function rgbToHex(rgb) {
+    if (typeof rgb !== 'object') throw new TypeError(`Type of ${rgb} is not an Object!`);
+    if (rgb.r == null || rgb.g == null || rgb.b == null) throw  new Error("Invalid RGB color");
+
     let hex = ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
 
     // checking for hex short form
@@ -68,7 +73,8 @@ export function rgbToHex(rgb) {
  * hsl = Converter.rgbToHsl({r: 11, g: 11, b: 11}); // hsl => {h: 0, s: 0, l: 0.04};
  */
 export function rgbToHsl(rgb) {
-    if (typeof rgb !== 'object') throw new Error(`Error! ${rgb} is not an Object!`);
+    if (typeof rgb !== 'object') throw new TypeError(`Type of ${rgb} is not an Object!`);
+    if (rgb.r == null || rgb.g == null || rgb.b == null) throw  new Error("Invalid RGB color");
 
     let r = rgb.r / 255, g = rgb.g / 255, b = rgb.b / 255;
 
@@ -131,7 +137,9 @@ export function hslToHex(hsl) {
  * rgb = Converter.hslToRgb({h: 300, s: 0.5, l: 0.5}); // rgb => {r: 191, g: 64, b: 191};
  */
 export function hslToRgb(hsl) {
-    if (typeof hsl !== 'object') throw new Error(`Error! ${hsl} is not an Object!`);
+    if (typeof hsl !== 'object') throw new TypeError(`Type of ${hsl} is not an Object!`);
+
+    if (hsl.h == null || hsl.s == null || hsl.l == null) throw  new Error("Invalid HSL color");
     let r, g, b, h = hsl.h / 360, s = hsl.s, l = hsl.l;
 
     if (s === 0) {

@@ -14,13 +14,13 @@ describe("Color Tools Converter", function () {
             expect(Converter.hexToRgb("#333333")).toEqual(rgbExpected);
         });
 
-        it('#3 Successfully converted hex to rgb without "#" ("333333")', function () {
+        it('#3 Convert failed when string is not valid hex "#" ("333333")', function () {
             var rgbExpected = {r: 51, g: 51, b: 51};
-            expect(Converter.hexToRgb("333333")).toEqual(rgbExpected);
+            expect(function(){Converter.hexToRgb("333333")}).toThrowError(Error);
         });
 
         it("#4 Convert failed when parameter was number(333333)", function () {
-            expect(function(){Converter.hexToRgb(333333)}).toThrowError(Error);
+            expect(function(){Converter.hexToRgb(333333)}).toThrowError(TypeError);
         });
     });
 
@@ -62,7 +62,11 @@ describe("Color Tools Converter", function () {
         });
 
         it('#7 Convert failed when parameter was not Object. (150, 200, 300)', function () {
-            expect(function(){Converter.rgbToHsl(150, 200, 300)}).toThrowError(Error);
+            expect(function(){Converter.rgbToHsl(150, 200, 300)}).toThrowError(TypeError);
+        });
+
+        it('#8 Convert failed when object had not one of needed key. {r: 200, g: 150}', function () {
+            expect(function(){Converter.rgbToHsl({r: 200, g: 150})}).toThrowError(Error);
         });
     });
 
@@ -90,7 +94,11 @@ describe("Color Tools Converter", function () {
         });
 
         it('#5 Convert failed when parameter was not Object. (120, 0.5, 0.1)', function () {
-            expect(function(){Converter.hslToRgb(120, 0.5, 0.1)}).toThrowError(Error);
+            expect(function(){Converter.hslToRgb(120, 0.5, 0.1)}).toThrowError(TypeError);
+        });
+
+        it('#6 Convert failed when object had not one of needed key. ({h: 0, l: 0.3})', function () {
+            expect(function(){Converter.hslToRgb({h: 0, l: 0.3})}).toThrowError(Error);
         });
     });
     describe("rgbToHex()", function () {
@@ -100,9 +108,16 @@ describe("Color Tools Converter", function () {
             expect(Converter.rgbToHex({r: 112, g: 65, b: 73})).toEqual(rgbExpected);
         });
         it('#2 Successfully converted rgb to hex in short format ({r: 51, g: 51, b: 51})', function () {
-
             var rgbExpected = "#333";
             expect(Converter.rgbToHex({r: 51, g: 51, b: 51})).toEqual(rgbExpected);
+        });
+
+        it('#3 Convert failed when parameter was not Object. (120, 0.5, 0.1)', function () {
+            expect(function(){Converter.rgbToHex(120, 0.5, 0.1)}).toThrowError(TypeError);
+        });
+
+        it('#4 Convert failed when object had not one of needed key. ({r: 200, g: 150})', function () {
+            expect(function(){Converter.rgbToHex({r: 200, g: 150})}).toThrowError(Error);
         });
     });
     describe("hexToHsl()", function () {
