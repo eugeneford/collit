@@ -338,7 +338,7 @@ Parse a valid CSS1, CSS2.1, CSS3 color name into a set of hex, rgb and hsl value
 import { Parser } from "react-color-tools";
 
 var color = Parser.parseColorName("black");
- 
+
 // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 ```
 
