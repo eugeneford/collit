@@ -24,8 +24,10 @@ The entire logic of components and modules is based on use of the ColorInfo obje
    hsl: { h: 0, s: 0 l: 0.1 a: 1 }
 }
 ```
-
-A alpha-key inside the rgb and hsl values is optional and can be omitted.
+"R", "G" and "B" keys should contains the numeric values between 0 and 255 (eg. 128)
+"H" key should contain the numeric value between 0 and 360 (eg. 270)
+"S", "L" and "A" keys should contains a numeric value between 0 and 1 (eg. 0.5)
+"A" key inside the rgb and hsl values is optional and can be omitted.
 
 ## Parent Components
 
