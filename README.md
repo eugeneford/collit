@@ -330,12 +330,16 @@ import { Validator } from "react-color-tools"
 
 
 ### Parser
+Parser Helper allows you to parse a CSS based color definition into the ColorInfo object, which contains a hex, rgb and hsl values of target css value.
 
+#### parseColorName(value)
+Parse a valid CSS1, CSS2.1, CSS3 color name into a set of hex, rgb and hsl values.
 ```js
-import { Parser } from "react-color-tools"
+import { Parser } from "react-color-tools";
 
-...
-
+var color = Parser.parseColorName("black");
+ 
+// color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 ```
 
 #### parseHex(color)

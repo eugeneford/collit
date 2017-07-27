@@ -317,9 +317,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Parse color name to color in hex, rgb and hsl formats
-	 * @param value
+	 * Parse a valid CSS1, CSS2.1, CSS3 color name into a set of hex, rgb and hsl values
+	 * @param value — a string with specified color name
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was invalid
 	 * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseColorName("black"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 	 */
 	function parseColorName(value) {
 	    if (typeof value !== "string") throw new TypeError("Type of target value should be a String");
