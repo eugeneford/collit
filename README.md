@@ -276,8 +276,8 @@ import { Ruler } from "react-color-tools"
 ## Helpers
 
 ### Converter
-
-
+Converter helper allows you to convert hex to rgb, rgb to hex, hsl to rgb, rgb to hsl, hex to hsl, hsl to hex etc.
+ 
 #### hexToRgb(hex)
 Converts an HEX color value to RGB.
 
@@ -332,7 +332,7 @@ var rgb = Converter.hslToRgb({h: 300, s: 0.5, l: 0.5}); // rgb => {r: 191, g: 64
 ```
 
 ### Validator
-Validator Helper provides a set of util functions for color testing eg. to match a hex, rgb color.
+Validator Helper that allows you to check if color is defined as a correct hex, rgb, rgba, hsl, hsla CSS string or gradient defined correctly.
 
 #### isColorName(name)
 Check if target name is a valid CSS1, CSS2.1, CSS3 color name
@@ -353,6 +353,13 @@ var isNotHex = isHex("#rgb"); // false
 ``` 
 
 #### isRgb(color)
+Check if target string is a valid css rgb color definition
+```js
+import { Validator } from "react-color-tools";
+
+var isRgb = Validator.isRgb("rgb( 0, 0, 0 )") // true
+var isNotRgb = Validator.isRgb("hsl( 0, 0, 100% )") // false
+```
 
 #### isHsb(color)
 

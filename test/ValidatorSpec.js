@@ -40,4 +40,34 @@ describe("Validator Helper", function(){
             expect(Validator.isHex("#f5f5f5")).toBe(true);
         });
     });
+
+    describe("isRgb(color)", function(){
+        it("Threw a TypeError when a non-string value was passed as parameter", function(){
+            expect(function(){ Validator.isRgb(25)}).toThrowError(TypeError);
+        });
+
+        it("Returned true for a single-digit rgb color definition ( rgb(0,0,0) )", function(){
+            expect(Validator.isRgb("rgb(0,0,0)")).toBe(true);
+        });
+
+        it("Returned true for a two-digit rgb color definition ( rgb(0,0,0) )", function(){
+            expect(Validator.isRgb("rgb(99,99,99)")).toBe(true);
+        });
+
+        it("Returned true for a three-digit rgb color definition ( rgb(0,0,0) )", function(){
+            expect(Validator.isRgb("rgb(255,255, 255)")).toBe(true);
+        });
+
+        it("Returned false when the whitespace between rgb and ( was spotted ( rgb (0,100%,100%) )", function(){
+            expect(Validator.isRgb("rgb (0,100%,100%)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was less then 0 ( was spotted ( rgb(-1,0,0) )", function(){
+            expect(Validator.isRgb("rgb(-1,0,0)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was a fractional number ( was spotted ( rgb(0,0,0.5) )", function(){
+            expect(Validator.isRgb("rgb(0,0,0.5)")).toBe(false);
+        });
+    });
 });

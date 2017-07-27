@@ -45,3 +45,18 @@ export function isHex(color){
     return true;
 }
 
+
+/**
+ * Check if target string is a valid css rgb color definition
+ * @param color — target hex string to test
+ * @throws TypeError — if type of color that was passed is not a string
+ * @returns {boolean}
+ *
+ * @example
+ * var isRgb = Validator.isRgb("rgb( 0, 0, 0 )") // true
+ * var isNotRgb = Validator.isRgb("hsl( 0, 0, 100% )") // false
+ */
+export function isRgb(color){
+    if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
+    return /^rgb\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\)$/i.test(color);
+}
