@@ -20,10 +20,9 @@ The entire logic of components and modules is based on use of the ColorInfo obje
 ```js
 {
    hex: "#333",
-   rgb: { r: 51, g: 51, b: 51, a: 1
-   },
+   rgb: { r: 51, g: 51, b: 51, a: 1 },
    hsl: { h: 0, s: 0 l: 0.1 a: 1 }
-} 
+}
 ```
 
 A alpha-key inside the rgb and hsl values is optional and can be omitted.
