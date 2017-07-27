@@ -275,7 +275,7 @@ import { Ruler } from "react-color-tools"
 
 ## Helpers
 
-### Convertor
+### Converter
 
 
 #### hexToRgb(hex)
