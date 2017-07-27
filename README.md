@@ -332,6 +332,7 @@ var rgb = Converter.hslToRgb({h: 300, s: 0.5, l: 0.5}); // rgb => {r: 191, g: 64
 ```
 
 ### Validator
+Validator Helper provides a set of util functions for color testing eg. to match a hex, rgb color.
 
 #### isColorName(name)
 Check if target name is a valid CSS1, CSS2.1, CSS3 color name
