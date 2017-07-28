@@ -15,9 +15,11 @@ import { NoviColorPicker } from "react-color-tools"
 ```
 
 ## Info objects
-The entire logic of components and modules is based on use of the ColorInfo object, which describes a specific color as a set of hex, rgb and hsl values, and GradientInfo, which describes a specific set of gradient values.
+The entire logic of components and modules is based on use of the ColorInfo, LinearGradientInfo or RadialGradientInfo data types.
 
 ## ColorInfo object
+Describes a specific color as a set of hex, rgb and hsl values
+
 ```js
 {
    hex: "#333",
@@ -25,53 +27,64 @@ The entire logic of components and modules is based on use of the ColorInfo obje
    hsl: { h: 0, s: 0 l: 0.1 a: 1 }
 }
 ```
-"R", "G" and "B" keys should contains the numeric values between 0 and 255 (eg. 128).<br />
-"H" key should contain the numeric value between 0 and 360 (eg. 270).<br />
-"S", "L" and "A" keys should contains a numeric value between 0 and 1 (eg. 0.5).<br />
-"A" key inside the rgb and hsl values is optional and can be omitted.  
+
+* "R", "G" and "B" — should contains the numeric values between 0 and 255 (eg. 128).<br />
+* "H" — should contain the numeric value between 0 and 360 (eg. 270).<br />
+* "S", "L" and "A" — should contains a numeric value between 0 and 1 (eg. 0.5).<br />
+
+> "A" — inside the rgb and hsl values is optional and can be omitted.  
 
 ## LinearGradientInfo object
+Describes a specific set of linear gradient values.
 ```js
 {
-   direction: 360,
-   colorStops: [
+   angle: 45,
+   sideCorner: "top right"
+   colorStopList: [
       {
-         offset: 0, // 0%
-         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+         position: 0, // 0%
+         color: { rgb: { r: 51, g: 51, b: 51, a: 1 } }
       },
       {
-         offset: 1, // 100%
-         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+         position: 1, // 100%
+         color: { hex: "#333" }
       }
    ],
 }
 ```
-* "direction" - defines the angle (should contain the numeric value between 0 and 360) or direction of gradient line (should contain one of the predefined keywords: "to top", "to left", "to right", "to bottom", "to top left", "to top right", "to bottom left", "to bottom right")
-* "colorStops" - defines a set of color-stop values.
- * "offset" - defines the optional stop position of the color.
- * "color" - defines the actual color (should contain at least one of the ColorInfo values).
+
+* angle — defines the angle (from 0 to 360) of gradient line. Can be omitted.
+* sideCorner — defines the direction of gradient line. Can be on of "top", "right", "left", "bottom", "top right", "bottom right", "bottom left", "top left" values.
+* colorStopList — contains a set of color-stop values. 
+  - position - defines the optional color stop position. Can be set as percentage (from 0 to 1) or length (any CSS number — px, em, pc, in, mm... eg. "20px") value.
+  - color - defines the actual stop color. Should contain at least one of ColorInfo's value.
 
 ## RadialGradientInfo object
+Describes a specific set of radial gradient values.
 ```js
 {
-   direction: 360,
-   colorStops: [
+   position: [.25, .75], // at 25% 75%
+   shape: "circle",
+   extent: "closest-side",
+   colorStopList: [
       {
-         offset: 0, // 0%
-         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+         position: 0, // 0%
+         color: { hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
       },
       {
-         offset: 1, // 100%
-         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+         position: 1, // 100%
+         color: { rgb: { r: 51, g: 51, b: 51, a: 1 } }
       }
    ],
 }
 ```
-* "direction" - defines the angle (should contain the numeric value between 0 and 360) or direction of gradient line (should contain one of the predefined keywords: "to top", "to left", "to right", "to bottom", "to top left", "to top right", "to bottom left", "to bottom right")
-* "colorStops" - defines a set of color-stop values.
- * "offset" - defines the optional stop position of the color.
- * "color" - defines the actual color (should contain at least one of the ColorInfo values).
 
+* position — defines the position of the gradient, interpreted in the same way as css background-position property values. Can be set as a percentage (from 0 to 1) or length (any CSS number — px, em, pc, in, mm... eg. "20px") value. Can be omitted.
+* shape — defines the actual shape of gradient. Can be set as "circle" or "ellipse" and can be omitted.
+* extent - describes how big the ending shape must be. The possible values are: "closest-side", "closest-corner", "farthest-side", "farthest-corner"
+* colorStopList — contains a set of color-stop values. 
+  - position - defines the optional color stop position. Can be set as percentage (from 0 to 1) or length (any CSS number — px, em, pc, in, mm... eg. "20px") value.
+  - color - defines the actual stop color. Should contain at least one of ColorInfo's value. 
 
 ## Parent Components
 
