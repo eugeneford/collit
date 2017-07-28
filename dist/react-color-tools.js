@@ -349,6 +349,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.isRgb = isRgb;
 	exports.isHsl = isHsl;
 	exports.isHsla = isHsla;
+	exports.isColor = isColor;
+	exports.isGradient = isGradient;
+	exports.isLinearGradient = isLinearGradient;
+	exports.isRadialGradient = isRadialGradient;
 
 	var _Colors = __webpack_require__(3);
 
@@ -452,6 +456,64 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
 	    return (/^hsla\(\s*(0|[1-9]\d?|[12]\d\d|3[0-5]\d)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0?.[1-9])|[01]|(0|[1-9]\d?|100)%)\s*\)$/i.test(color)
 	    );
+	}
+
+	/**
+	 * Check if target string is a valid css color definition
+	 * @param color — target color string to test
+	 * @returns {boolean}
+	 *
+	 * @example
+	 * var isColor = Validator.isColor("hsla(0,0%,0%, .5)") // true
+	 * var isNotColor = Validator.isColor("color") // false
+	 */
+	function isColor(color) {
+	    return isColorName(color) || isHex(color) || isRgb(color) || isRgba(color) || isHsl(color) || isHsla(color);
+	}
+
+	/**
+	 * Check if target string is a valid css gradient definition
+	 * @param gradient — target gradient string to test
+	 * @returns {boolean}
+	 *
+	 * @example
+	 * var isHsla = Validator.isGradient("hsla(0,0%,0%, .5)") // true
+	 * var isNotHsla = Validator.isGradient("hsl( 0, 5, 100% )") // false
+	 */
+	function isGradient(gradient) {
+	    return isLinearGradient(gradient) || isRadialGradient(gradient);
+	}
+
+	/**
+	 * Check if target string is a valid css gradient definition
+	 * @param gradient — target gradient string to test
+	 * @throws TypeError — if type of color that was passed is not a string
+	 * @returns {boolean}
+	 *
+	 * @example
+	 * var isHsla = Validator.isLinearGradient("hsla(0,0%,0%, .5)") // true
+	 * var isNotHsla = Validator.isLinearGradient("hsl( 0, 5, 100% )") // false
+	 */
+	function isLinearGradient(gradient) {
+	    if (typeof gradient !== "string") throw new TypeError("Type of target name should be a String");
+
+	    // checking for general linear-gradient syntax
+	    var matches = /^linear-gradient\([^(]*(\([^)]*\)[^(]*)*[^)]*\)$/g.exec(gradient);
+	    console.dir(matches);
+	}
+
+	/**
+	 * Check if target string is a valid css gradient definition
+	 * @param gradient — target gradient string to test
+	 * @throws TypeError — if type of color that was passed is not a string
+	 * @returns {boolean}
+	 *
+	 * @example
+	 * var isHsla = Validator.isRadialGradient("hsla(0,0%,0%, .5)") // true
+	 * var isNotHsla = Validator.isRadialGradient("hsl( 0, 5, 100% )") // false
+	 */
+	function isRadialGradient(gradient) {
+	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
 	}
 
 /***/ }),

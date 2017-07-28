@@ -200,15 +200,21 @@ describe("Validator Helper", function(){
         });
 
         it("Returned false when word 'hsla' was wrong hlsa(320, 0%, 100%, .5)", function(){
-            expect(Validator.isHsl("hlsa(320, 0%, 100%, .5)")).toBe(false);
+            expect(Validator.isHsla("hlsa(320, 0%, 100%, .5)")).toBe(false);
         });
 
         it("Returned false when alpha was not set hsla(320, 0%, 100%)", function(){
-            expect(Validator.isHsl("hsla(320, 0%, 100%)")).toBe(false);
+            expect(Validator.isHsla("hsla(320, 0%, 100%)")).toBe(false);
         });
 
         it("Returned false when keyword is 'hsl' hsl(320, 0%, 100%, .5)", function(){
-            expect(Validator.isHsl("hsl(320, 0%, 100%, .5)")).toBe(false);
+            expect(Validator.isHsla("hsl(320, 0%, 100%, .5)")).toBe(false);
         });
     });
+
+    describe("isLinearGradient()", function () {
+        it("", function(){
+            Validator.isLinearGradient("linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%)");
+        })
+    })
 });
