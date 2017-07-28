@@ -347,6 +347,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.isColorName = isColorName;
 	exports.isHex = isHex;
 	exports.isRgb = isRgb;
+	exports.isHsl = isHsl;
 
 	var _Colors = __webpack_require__(3);
 
@@ -406,7 +407,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Check if target string is a valid css rgb color definition
-	 * @param color — target hex string to test
+	 * @param color — target hsl string to test
 	 * @throws TypeError — if type of color that was passed is not a string
 	 * @returns {boolean}
 	 *
@@ -417,6 +418,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	function isRgb(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
 	    return (/^rgb\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\)$/i.test(color)
+	    );
+	}
+
+	/**
+	 * Check if target string is a valid css hsl color definition
+	 * @param color — target hsl string to test
+	 * @throws TypeError — if type of color that was passed is not a string
+	 * @returns {boolean}
+	 *
+	 * @example
+	 * var isRgb = Validator.isHsl("hsl(0,0%,0%)") // true
+	 * var isNotRgb = Validator.isRgb("hsl( 0, 5, 100% )") // false
+	 */
+	function isHsl(color) {
+	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
+	    return (/^hsl\(\s*(0|[1-9]\d?|[12]\d\d|3[0-5]\d)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0|[1-9]\d?|100)%)\s*\)$/i.test(color)
 	    );
 	}
 

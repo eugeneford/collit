@@ -1,6 +1,6 @@
 var Converter = ColorTools.Converter;
 
-describe("Color Tools Converter", function () {
+describe("Converter Helper", function () {
 
     describe("hexToRgb()", function () {
         it('#1 Successfully converted hex to rgb when hex was in short form ("#333")', function () {

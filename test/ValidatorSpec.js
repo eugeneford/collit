@@ -50,11 +50,11 @@ describe("Validator Helper", function(){
             expect(Validator.isRgb("rgb(0,0,0)")).toBe(true);
         });
 
-        it("Returned true for a two-digit rgb color definition ( rgb(0,0,0) )", function(){
+        it("Returned true for a two-digit rgb color definition ( rgb(99,99,99) )", function(){
             expect(Validator.isRgb("rgb(99,99,99)")).toBe(true);
         });
 
-        it("Returned true for a three-digit rgb color definition ( rgb(0,0,0) )", function(){
+        it("Returned true for a three-digit rgb color definition ( rgb(255,255, 255) )", function(){
             expect(Validator.isRgb("rgb(255,255, 255)")).toBe(true);
         });
 
@@ -68,6 +68,61 @@ describe("Validator Helper", function(){
 
         it("Returned false when one of the values was a fractional number ( was spotted ( rgb(0,0,0.5) )", function(){
             expect(Validator.isRgb("rgb(0,0,0.5)")).toBe(false);
+        });
+
+        it("Returned false when when one of the values was greater than 255 (rgb(260, 255, 255))", function(){
+            expect(Validator.isRgb("rgb(260, 255, 255)")).toBe(false);
+        });
+
+    });
+
+    describe("isHsl(color)", function(){
+        it("Threw a TypeError when a non-string value was passed as parameter", function(){
+            expect(function(){ Validator.isHsl(25)}).toThrowError(TypeError);
+        });
+
+        it("Returned true for a single-digit hsl color definition (hsl(0,0%,0%))", function(){
+            expect(Validator.isHsl("hsl(0,0%,0%)")).toBe(true);
+        });
+
+        it("Returned true for a two-digit hsl color definition ( hsl(60,25%,50%) )", function(){
+            expect(Validator.isHsl("hsl(60,25%,50%)")).toBe(true);
+        });
+
+        it("Returned true for a three-digit hsl color definition (hsl(240,100%, 100%)) )", function(){
+            expect(Validator.isHsl("hsl(240,100%, 100%)")).toBe(true);
+        });
+
+        it("Returned false when the whitespace between hsl and ( was spotted ( hsl (240,100%, 100%))", function(){
+            expect(Validator.isHsl("hsl (240,100%, 100%)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was less then 0 ( hsl(-10,0,0) )", function(){
+            expect(Validator.isHsl("hsl(-10,0%,0%)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was a fractional number (hsl(0.5,0%,0%))", function(){
+            expect(Validator.isHsl("hsl(0.5,0%,0%)")).toBe(false);
+        });
+
+        it("Returned false when saturation was not percentage (hsl(120, 0, 0%))", function(){
+            expect(Validator.isHsl("hsl(120, 0, 0%)")).toBe(false);
+        });
+
+        it("Returned false when lightness was not percentage (hsl(120, 0%, 0))", function(){
+            expect(Validator.isHsl("hsl(120, 0%, 0)")).toBe(false);
+        });
+
+        it("Returned false when hue was greater than 359 (hsl(360, 0%, 0%))", function(){
+            expect(Validator.isHsl("hsl(360, 0%, 0%)")).toBe(false);
+        });
+
+        it("Returned false when saturation was greater than 100% (hsl(360, 105%, 0%))", function(){
+            expect(Validator.isHsl("hsl(360, 105%, 0%)")).toBe(false);
+        });
+
+        it("Returned false when lightness was greater than 100% (hsl(360, 0%, 105%))", function(){
+            expect(Validator.isHsl("hsl(360, 0%, 105%)")).toBe(false);
         });
     });
 });
