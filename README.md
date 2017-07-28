@@ -348,8 +348,8 @@ Check if target string is a valid hex color
 ```js
 import { Validator } from "react-color-tools";
 
-var isHex = isHex("#333"); // true
-var isNotHex = isHex("#rgb"); // false
+var isHex = Validator.isHex("#333"); // true
+var isNotHex = Validator.isHex("#rgb"); // false
 ``` 
 
 #### isRgb(color)
@@ -365,6 +365,8 @@ var isNotRgb = Validator.isRgb("hsl( 0, 0, 100% )") // false
 
 Check if target string is a valid css HSL color definition
 ```js
+import { Validator } from "react-color-tools";
+
 var isHsl = Validator.isHsl("hsl(0,0%,0%)") // true
 var isNotHsl = Validator.isHsl("hsl( 0, 5, 100% )") // false
 ```
@@ -374,6 +376,8 @@ var isNotHsl = Validator.isHsl("hsl( 0, 5, 100% )") // false
 #### isHsla(color)
 Check if target string is a valid css HSLa color definition
 ```js
+import { Validator } from "react-color-tools";
+
 var isHsla = Validator.isHsla("hsla(0,0%,0%, .5)") // true
 var isNotHsla = Validator.isHsla("hsl( 0, 5, 100% )") // false
 ```
