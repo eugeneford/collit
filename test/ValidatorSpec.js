@@ -143,11 +143,11 @@ describe("Validator Helper", function(){
             expect(Validator.isHsla("hsla(60,25%,50%, 0.5)")).toBe(true);
         });
 
-        it("Returned true for a three-digit hsl color definition with alpha 1 (hsl(240,100%, 100%, 1)) )", function(){
+        it("Returned true for a three-digit hsl color definition with alpha 1 (hsla(240,100%, 100%, 1)) )", function(){
             expect(Validator.isHsla("hsla(240,100%, 100%, 1)")).toBe(true);
         });
 
-        it("Returned true when alpha was set in percentage (hsl(240,100%, 100%, 50%)) )", function(){
+        it("Returned true when alpha was set in percentage (hsla(240,100%, 100%, 50%)) )", function(){
             expect(Validator.isHsla("hsla(240,100%, 100%, 50%)")).toBe(true);
         });
 
@@ -155,40 +155,60 @@ describe("Validator Helper", function(){
             expect(Validator.isHsla("hsla(240,100%, 100%, .5)")).toBe(true);
         });
 
-        it("Returned false alpha set in percentage and greater than 100% (hsl(240,100%, 100%, 101%)) )", function(){
-            expect(Validator.isHsla("hsla(240,100%, 100%, 101%)")).toBe(false);
-        }); 
+        it("Returned true when aplha set 1 ( hsla(240,100%, 100%, 1))", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, 1)")).toBe(true);
+        });
 
-        // it("Returned false when the whitespace between hsl and ( was spotted ( hsl (240,100%, 100%))", function(){
-        //     expect(Validator.isHsla("hsl (240,100%, 100%)")).toBe(false);
-        // });
-        //
-        // it("Returned false when one of the values was less then 0 ( hsl(-10,0,0) )", function(){
-        //     expect(Validator.isHsla("hsl(-10,0%,0%)")).toBe(false);
-        // });
-        //
-        // it("Returned false when one of the values was a fractional number (hsl(0.5,0%,0%))", function(){
-        //     expect(Validator.isHsla("hsl(0.5,0%,0%)")).toBe(false);
-        // });
-        //
-        // it("Returned false when saturation was not percentage (hsl(120, 0, 0%))", function(){
-        //     expect(Validator.isHsla("hsl(120, 0, 0%)")).toBe(false);
-        // });
-        //
-        // it("Returned false when lightness was not percentage (hsl(120, 0%, 0))", function(){
-        //     expect(Validator.isHsla("hsl(120, 0%, 0)")).toBe(false);
-        // });
-        //
-        // it("Returned false when hue was greater than 359 (hsl(360, 0%, 0%))", function(){
-        //     expect(Validator.isHsla("hsl(360, 0%, 0%)")).toBe(false);
-        // });
-        //
-        // it("Returned false when saturation was greater than 100% (hsl(360, 105%, 0%))", function(){
-        //     expect(Validator.isHsla("hsl(360, 105%, 0%)")).toBe(false);
-        // });
-        //
-        // it("Returned false when lightness was greater than 100% (hsl(360, 0%, 105%))", function(){
-        //     expect(Validator.isHsla("hsl(360, 0%, 105%)")).toBe(false);
-        // });
+        it("Returned false alpha set in percentage and greater than 100% (hsla(240,100%, 100%, 101%)) )", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, 101%)")).toBe(false);
+        });
+
+        it("Returned false alpha greater than 1 (hsla(240,100%, 100%, 1.2)) )", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, 1.2)")).toBe(false);
+        });
+
+        it("Returned false when the whitespace between hsla and ( was spotted ( hsla (240,100%, 100%))", function(){
+            expect(Validator.isHsla("hsla (240,100%, 100%, .5)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was less then 0 ( hsla(-10,0%,0%, .5) )", function(){
+            expect(Validator.isHsla("hsla(-10,0%,0%, .5)")).toBe(false);
+        });
+
+        it("Returned false when one of the values(not alpha) was a fractional number (hsla(0.5,0%,0%, .5))", function(){
+            expect(Validator.isHsla("hsla(0.5,0%,0%, .5)")).toBe(false);
+        });
+
+        it("Returned false when saturation was not percentage (hsla(120, 0, 0%, .5))", function(){
+            expect(Validator.isHsla("hsla(120, 0, 0%, .5)")).toBe(false);
+        });
+
+        it("Returned false when lightness was not percentage (hsla(120, 0%, 0, .5))", function(){
+            expect(Validator.isHsla("hsla(120, 0%, 0, .5)")).toBe(false);
+        });
+
+        it("Returned false when hue was greater than 359 (hsla(360, 0%, 0%, .5))", function(){
+            expect(Validator.isHsla("hsla(360, 0%, 0%, .5)")).toBe(false);
+        });
+
+        it("Returned false when saturation was greater than 100% (hsla(360, 105%, 0%, .5))", function(){
+            expect(Validator.isHsla("hsla(360, 105%, 0%, .5)")).toBe(false);
+        });
+
+        it("Returned false when lightness was greater than 100% (hsla(360, 0%, 105%, .5))", function(){
+            expect(Validator.isHsla("hsla(360, 0%, 105%, .5)")).toBe(false);
+        });
+
+        it("Returned false when word 'hsla' was wrong hlsa(320, 0%, 100%, .5)", function(){
+            expect(Validator.isHsl("hlsa(320, 0%, 100%, .5)")).toBe(false);
+        });
+
+        it("Returned false when alpha was not set hsla(320, 0%, 100%)", function(){
+            expect(Validator.isHsl("hsla(320, 0%, 100%)")).toBe(false);
+        });
+
+        it("Returned false when keyword is 'hsl' hsl(320, 0%, 100%, .5)", function(){
+            expect(Validator.isHsl("hsl(320, 0%, 100%, .5)")).toBe(false);
+        });
     });
 });

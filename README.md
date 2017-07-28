@@ -361,11 +361,22 @@ var isRgb = Validator.isRgb("rgb( 0, 0, 0 )") // true
 var isNotRgb = Validator.isRgb("hsl( 0, 0, 100% )") // false
 ```
 
-#### isHsb(color)
+#### isHsl(color)
+
+Check if target string is a valid css HSL color definition
+```js
+var isHsl = Validator.isHsl("hsl(0,0%,0%)") // true
+var isNotHsl = Validator.isHsl("hsl( 0, 5, 100% )") // false
+```
 
 #### isRgba(color)
 
-#### isHSBA(color)
+#### isHsla(color)
+Check if target string is a valid css HSLa color definition
+```js
+var isHsla = Validator.isHsla("hsla(0,0%,0%, .5)") // true
+var isNotHsla = Validator.isHsla("hsl( 0, 5, 100% )") // false
+```
 
 #### isColor(color)
 
