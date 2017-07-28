@@ -76,6 +76,48 @@ describe("Validator Helper", function(){
 
     });
 
+    describe("isRgba(color)", function(){
+        it("Threw a TypeError when a non-string value was passed as parameter", function(){
+            expect(function(){ Validator.isRgba(25)}).toThrowError(TypeError);
+        });
+
+        it("Returned true for a single-digit rgb color definition ( rgba(0,0,0,.5) )", function(){
+            expect(Validator.isRgba("rgba(0,0,0, .5)")).toBe(true);
+        });
+
+        it("Returned true for a two-digit rgb color definition ( rgba(99,99,99) )", function(){
+            expect(Validator.isRgba("rgba(99,99,99, 0.5)")).toBe(true);
+        });
+
+        it("Returned true for a three-digit rgb color definition ( rgba(255,255, 255) )", function(){
+            expect(Validator.isRgba("rgba(255,255, 255, 1)")).toBe(true);
+        });
+
+        it("Returned false when the whitespace between rgb and ( was spotted ( rgba (0,100%,100%) )", function(){
+            expect(Validator.isRgba("rgba (0,100%,100%)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was less then 0 ( was spotted ( rgba(-1,0,0) )", function(){
+            expect(Validator.isRgba("rgba(-1,0,0)")).toBe(false);
+        });
+
+        it("Returned false when one of the values was a fractional number ( was spotted ( rgba(0,0,0.5) )", function(){
+            expect(Validator.isRgba("rgba(0,0,0.5)")).toBe(false);
+        });
+
+        it("Returned false when when one of the values was greater than 255 (rgba(260, 255, 255))", function(){
+            expect(Validator.isRgba("rgba(260, 255, 255)")).toBe(false);
+        });
+
+        it("Returned false when when alpha value was less than 0 (rgba(255, 255, 255, -1))", function(){
+            expect(Validator.isRgba("rgba(260, 255, 255, -1)")).toBe(false);
+        });
+
+        it("Returned false when when alpha value was less than 1 (rgba(255, 255, 255, 1.1))", function(){
+            expect(Validator.isRgba("rgba(255, 255, 255, 1.1)")).toBe(false);
+        });
+    });
+
     describe("isHsl(color)", function(){
         it("Threw a TypeError when a non-string value was passed as parameter", function(){
             expect(function(){ Validator.isHsl(25)}).toThrowError(TypeError);

@@ -48,7 +48,7 @@ export function isHex(color){
 
 /**
  * Check if target string is a valid css rgb color definition
- * @param color — target hsl string to test
+ * @param color — target rgb string to test
  * @throws TypeError — if type of color that was passed is not a string
  * @returns {boolean}
  *
@@ -59,6 +59,21 @@ export function isHex(color){
 export function isRgb(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
     return /^rgb\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\)$/i.test(color);
+}
+
+/**
+ * Check if target string is a valid css rgba color definition
+ * @param color — target rgba string to test
+ * @throws TypeError — if type of color that was passed is not a string
+ * @returns {boolean}
+ *
+ * @example
+ * var isRgba = Validator.isRgba("rgba(255,255,255,.5)") // true
+ * var isNotRgba = Validator.isRgba("hsla(255,100%,100%,.5)") // false
+ */
+export function isRgba(color){
+    if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
+    return /^rgba\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*((0?.[1-9])|[01])\s*\)$/i.test(color);
 }
 
 /**
