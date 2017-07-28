@@ -117,12 +117,78 @@ describe("Validator Helper", function(){
             expect(Validator.isHsl("hsl(360, 0%, 0%)")).toBe(false);
         });
 
-        it("Returned false when saturation was greater than 100% (hsl(360, 105%, 0%))", function(){
-            expect(Validator.isHsl("hsl(360, 105%, 0%)")).toBe(false);
+        it("Returned false when saturation was greater than 100% (hsl(320, 105%, 0%))", function(){
+            expect(Validator.isHsl("hsl(320, 105%, 0%)")).toBe(false);
         });
 
-        it("Returned false when lightness was greater than 100% (hsl(360, 0%, 105%))", function(){
-            expect(Validator.isHsl("hsl(360, 0%, 105%)")).toBe(false);
+        it("Returned false when lightness was greater than 100% (hsl(320, 0%, 105%))", function(){
+            expect(Validator.isHsl("hsl(320, 0%, 105%)")).toBe(false);
         });
+
+        it("Returned false when word 'hsl' was wrong hls(320, 0%, 100%)", function(){
+            expect(Validator.isHsl("hls(320, 0%, 100%)")).toBe(false);
+        });
+    });
+
+    describe("isHsla(color)", function(){
+        it("Threw a TypeError when a non-string value was passed as parameter", function(){
+            expect(function(){ Validator.isHsla(25)}).toThrowError(TypeError);
+        });
+
+        it("Returned true for a single-digit hsl color definition with alpha 0 (hsla(0,0%,0%, 0))", function(){
+            expect(Validator.isHsla("hsla(0,0%,0%, 0)")).toBe(true);
+        });
+
+        it("Returned true for a two-digit hsl color definition with alpha 0.5 ( hsla(60,25%,50%, 0.5) )", function(){
+            expect(Validator.isHsla("hsla(60,25%,50%, 0.5)")).toBe(true);
+        });
+
+        it("Returned true for a three-digit hsl color definition with alpha 1 (hsl(240,100%, 100%, 1)) )", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, 1)")).toBe(true);
+        });
+
+        it("Returned true when alpha was set in percentage (hsl(240,100%, 100%, 50%)) )", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, 50%)")).toBe(true);
+        });
+
+        it("Returned true when alpha was float number without zero with dot (hsla(240,100%, 100%, .5)) )", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, .5)")).toBe(true);
+        });
+
+        it("Returned false alpha set in percentage and greater than 100% (hsl(240,100%, 100%, 101%)) )", function(){
+            expect(Validator.isHsla("hsla(240,100%, 100%, 101%)")).toBe(false);
+        }); 
+
+        // it("Returned false when the whitespace between hsl and ( was spotted ( hsl (240,100%, 100%))", function(){
+        //     expect(Validator.isHsla("hsl (240,100%, 100%)")).toBe(false);
+        // });
+        //
+        // it("Returned false when one of the values was less then 0 ( hsl(-10,0,0) )", function(){
+        //     expect(Validator.isHsla("hsl(-10,0%,0%)")).toBe(false);
+        // });
+        //
+        // it("Returned false when one of the values was a fractional number (hsl(0.5,0%,0%))", function(){
+        //     expect(Validator.isHsla("hsl(0.5,0%,0%)")).toBe(false);
+        // });
+        //
+        // it("Returned false when saturation was not percentage (hsl(120, 0, 0%))", function(){
+        //     expect(Validator.isHsla("hsl(120, 0, 0%)")).toBe(false);
+        // });
+        //
+        // it("Returned false when lightness was not percentage (hsl(120, 0%, 0))", function(){
+        //     expect(Validator.isHsla("hsl(120, 0%, 0)")).toBe(false);
+        // });
+        //
+        // it("Returned false when hue was greater than 359 (hsl(360, 0%, 0%))", function(){
+        //     expect(Validator.isHsla("hsl(360, 0%, 0%)")).toBe(false);
+        // });
+        //
+        // it("Returned false when saturation was greater than 100% (hsl(360, 105%, 0%))", function(){
+        //     expect(Validator.isHsla("hsl(360, 105%, 0%)")).toBe(false);
+        // });
+        //
+        // it("Returned false when lightness was greater than 100% (hsl(360, 0%, 105%))", function(){
+        //     expect(Validator.isHsla("hsl(360, 0%, 105%)")).toBe(false);
+        // });
     });
 });
