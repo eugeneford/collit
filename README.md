@@ -14,9 +14,10 @@ import { NoviColorPicker } from "react-color-tools"
 
 ```
 
-## ColorInfo object
-The entire logic of components and modules is based on use of the ColorInfo object, which describes a specific color as a set of hex, rgb and hsl values.
+## Info objects
+The entire logic of components and modules is based on use of the ColorInfo object, which describes a specific color as a set of hex, rgb and hsl values, and GradientInfo, which describes a specific set of gradient values.
 
+## ColorInfo object
 ```js
 {
    hex: "#333",
@@ -28,6 +29,49 @@ The entire logic of components and modules is based on use of the ColorInfo obje
 "H" key should contain the numeric value between 0 and 360 (eg. 270).<br />
 "S", "L" and "A" keys should contains a numeric value between 0 and 1 (eg. 0.5).<br />
 "A" key inside the rgb and hsl values is optional and can be omitted.  
+
+## LinearGradientInfo object
+```js
+{
+   direction: 360,
+   colorStops: [
+      {
+         offset: 0, // 0%
+         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+      },
+      {
+         offset: 1, // 100%
+         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+      }
+   ],
+}
+```
+* "direction" - defines the angle (should contain the numeric value between 0 and 360) or direction of gradient line (should contain one of the predefined keywords: "to top", "to left", "to right", "to bottom", "to top left", "to top right", "to bottom left", "to bottom right")
+* "colorStops" - defines a set of color-stop values.
+ * "offset" - defines the optional stop position of the color.
+ * "color" - defines the actual color (should contain at least one of the ColorInfo values).
+
+## RadialGradientInfo object
+```js
+{
+   direction: 360,
+   colorStops: [
+      {
+         offset: 0, // 0%
+         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+      },
+      {
+         offset: 1, // 100%
+         color: { hex: "#333", rgb: { r: 51, g: 51, b: 51, a: 1 }, hsl: { h: 0, s: 0 l: 0.1 a: 1 } }
+      }
+   ],
+}
+```
+* "direction" - defines the angle (should contain the numeric value between 0 and 360) or direction of gradient line (should contain one of the predefined keywords: "to top", "to left", "to right", "to bottom", "to top left", "to top right", "to bottom left", "to bottom right")
+* "colorStops" - defines a set of color-stop values.
+ * "offset" - defines the optional stop position of the color.
+ * "color" - defines the actual color (should contain at least one of the ColorInfo values).
+
 
 ## Parent Components
 
@@ -372,6 +416,13 @@ var isNotHsl = Validator.isHsl("hsl( 0, 5, 100% )") // false
 ```
 
 #### isRgba(color)
+Check if target string is a valid css rgba color definition
+```js
+import { Validator } from "react-color-tools";
+
+var isRgba = Validator.isRgba("rgba(255,255,255,.5)") // true
+var isNotRgba = Validator.isRgba("hsla(255,100%,100%,.5)") // false
+```
 
 #### isHsla(color)
 Check if target string is a valid css HSLa color definition
