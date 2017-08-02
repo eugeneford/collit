@@ -425,7 +425,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isRgb(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return _RegEx2.default.RGBONLY.test(color);
+	    return _RegEx2.default.RGB_ONLY.test(color);
 	}
 
 	/**
@@ -440,7 +440,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isRgba(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return _RegEx2.default.RGBAONLY.test(color);
+	    return _RegEx2.default.RGBA_ONLY.test(color);
 	}
 
 	/**
@@ -455,7 +455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isHsl(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return _RegEx2.default.HSLONLY.test(color);
+	    return _RegEx2.default.HSL_ONLY.test(color);
 	}
 
 	/**
@@ -470,7 +470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isHsla(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return _RegEx2.default.HSLAONLY.test(color);
+	    return _RegEx2.default.HSLA_ONLY.test(color);
 	}
 
 	/**
@@ -480,6 +480,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * @example
 	 * var isColor = Validator.isColor("hsla(0,0%,0%, .5)") // true
+	 * var isColorToo = Validator.isColor("black") // true
 	 * var isNotColor = Validator.isColor("color") // false
 	 */
 	function isColor(color) {
@@ -728,14 +729,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	// RegExp Helpers
 	var BYTE = "0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5]";
 	var PERCENTAGE = "0%|[1-9]\\d?%|100%";
 	var FRACTION = "(?:0|0?.[1-9]+)";
 	var DEGREES = "(?:0(?:deg)?|[1-9]\\d?(?:deg)?|[12]\\d\\d(?:deg)?|3[0-5]\\d(?:deg)?)";
 	var GRADIANS = "(?:0grad|[1-9]\\d?grad|[123]\\d\\dgrad|400grad)";
-	var RADIAN = "rad";
 	var TURN = "(?:" + FRACTION + ")turn";
-	// TODO: Add Radian regular
 	var ANGLE = DEGREES + "|" + GRADIANS + "|" + TURN;
 	var SIDE_CORNER = "to\\s+((?:(?:left|right)(?:\\s+(?:top|bottom))?))";
 	var HEX = "\\#[0-9a-f]{3}|[0-9a-f]{6}";
@@ -743,14 +743,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var RGBA = "rgba\\(\\s*((" + BYTE + ")\\s*,\\s*(" + BYTE + ")\\s*,\\s*(" + BYTE + ")|(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + "))\\s*,\\s*(" + FRACTION + "|" + PERCENTAGE + ")\\s*\\)";
 	var HSL = "hsl\\(\\s*(" + ANGLE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*\\)$";
 	var HSLA = "hsla\\(\\s*(" + ANGLE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + FRACTION + "|" + PERCENTAGE + ")\\s*\\)";
+	var COLOR_STOP = HEX + "|" + RGB + "|" + RGBA + "|" + HSL + "|" + HSLA + "(?:\\s+" + PERCENTAGE + ")?";
+
+	// Color RegExp
 	var RGB_ONLY = "^" + RGB + "$";
 	var RGBA_ONLY = "^" + RGBA + "$";
 	var HSL_ONLY = "^" + HSL + "$";
 	var HSLA_ONLY = "^" + HSLA + "$";
-	var COLOR_STOP = HEX + "|" + RGB + "|" + RGBA + "|" + HSL + "|" + HSLA + "(?:\\s+" + PERCENTAGE + ")?";
-	var LINEAR_GRADIENT = "^linear-gradient\\(\\s*(" + ANGLE + "|" + SIDE_CORNER + "|)\\s*(?:,\\s(" + COLOR_STOP + "))+\\)$";
-
-	console.log(LINEAR_GRADIENT);
 
 	exports.default = {
 	    DEGREES: new RegExp(DEGREES, "i"),
@@ -763,9 +762,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    RGB_ONLY: new RegExp(RGB_ONLY, "i"),
 	    RGBA_ONLY: new RegExp(RGBA_ONLY, "i"),
 	    HSL_ONLY: new RegExp(HSL_ONLY, "i"),
-	    HSLA_ONLY: new RegExp(HSLA_ONLY, "i"),
-	    LINEAR_GRADIENT: new RegExp(LINEAR_GRADIENT, "i")
-
+	    HSLA_ONLY: new RegExp(HSLA_ONLY, "i")
 	};
 
 /***/ }),

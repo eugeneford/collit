@@ -447,6 +447,12 @@ var isNotHsla = Validator.isHsla("hsl( 0, 5, 100% )") // false
 ```
 
 #### isColor(color)
+Check if target string is a valid css color definition
+```js
+var isColor = Validator.isColor("hsla(0,0%,0%, .5)") // true
+var isColorToo = Validator.isColor("black") // true
+var isNotColor = Validator.isColor("color") // false
+```
 
 #### isLinearGradient(gradient)
 

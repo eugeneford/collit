@@ -59,7 +59,7 @@ export function isHex(color){
  */
 export function isRgb(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return regEx.RGBONLY.test(color);
+    return regEx.RGB_ONLY.test(color);
 }
 
 /**
@@ -74,7 +74,7 @@ export function isRgb(color){
  */
 export function isRgba(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return regEx.RGBAONLY.test(color);
+    return regEx.RGBA_ONLY.test(color);
 }
 
 /**
@@ -89,7 +89,7 @@ export function isRgba(color){
  */
 export function isHsl(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return regEx.HSLONLY.test(color);
+    return regEx.HSL_ONLY.test(color);
 }
 
 /**
@@ -104,7 +104,7 @@ export function isHsl(color){
  */
 export function isHsla(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return regEx.HSLAONLY.test(color);
+    return regEx.HSLA_ONLY.test(color);
 }
 
 /**
@@ -114,6 +114,7 @@ export function isHsla(color){
  *
  * @example
  * var isColor = Validator.isColor("hsla(0,0%,0%, .5)") // true
+ * var isColorToo = Validator.isColor("black") // true
  * var isNotColor = Validator.isColor("color") // false
  */
 export function isColor(color){

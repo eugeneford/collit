@@ -1,11 +1,10 @@
+// RegExp Helpers
 const BYTE = "0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5]";
 const PERCENTAGE = "0%|[1-9]\\d?%|100%";
 const FRACTION = "(?:0|0?.[1-9]+)";
 const DEGREES = "(?:0(?:deg)?|[1-9]\\d?(?:deg)?|[12]\\d\\d(?:deg)?|3[0-5]\\d(?:deg)?)";
 const GRADIANS = "(?:0grad|[1-9]\\d?grad|[123]\\d\\dgrad|400grad)";
-const RADIAN = "rad";
 const TURN = `(?:${FRACTION})turn`;
-// TODO: Add Radian regular
 const ANGLE = `${DEGREES}|${GRADIANS}|${TURN}`;
 const SIDE_CORNER = "to\\s+((?:(?:left|right)(?:\\s+(?:top|bottom))?))";
 const HEX = "\\#[0-9a-f]{3}|[0-9a-f]{6}";
@@ -13,14 +12,13 @@ const RGB = `rgb\\(\\s*((${BYTE})\\s*,\\s*(${BYTE})\\s*,\\s*(${BYTE})|(${PERCENT
 const RGBA =`rgba\\(\\s*((${BYTE})\\s*,\\s*(${BYTE})\\s*,\\s*(${BYTE})|(${PERCENTAGE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${PERCENTAGE}))\\s*,\\s*(${FRACTION}|${PERCENTAGE})\\s*\\)`;
 const HSL = `hsl\\(\\s*(${ANGLE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${PERCENTAGE})\\s*\\)$`;
 const HSLA = `hsla\\(\\s*(${ANGLE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${FRACTION}|${PERCENTAGE})\\s*\\)`;
+const COLOR_STOP = `${HEX}|${RGB}|${RGBA}|${HSL}|${HSLA}(?:\\s+${PERCENTAGE})?`;
+
+// Color RegExp
 const RGB_ONLY = `^${RGB}$`;
 const RGBA_ONLY = `^${RGBA}$`;
 const HSL_ONLY = `^${HSL}$`;
 const HSLA_ONLY = `^${HSLA}$`;
-const COLOR_STOP = `${HEX}|${RGB}|${RGBA}|${HSL}|${HSLA}(?:\\s+${PERCENTAGE})?`;
-//const LINEAR_GRADIENT = `^linear-gradient\\(\\s*(${ANGLE}|${SIDE_CORNER}|)\\s*(?:,\\s(${COLOR_STOP}))+\\)$`;
-
-console.log(LINEAR_GRADIENT);
 
 export default {
     DEGREES: new RegExp(DEGREES, "i"),
@@ -34,6 +32,4 @@ export default {
     RGBA_ONLY:  new RegExp(RGBA_ONLY, "i"),
     HSL_ONLY: new RegExp(HSL_ONLY, "i"),
     HSLA_ONLY: new RegExp(HSLA_ONLY, "i"),
-  //  LINEAR_GRADIENT: new RegExp(LINEAR_GRADIENT, "i"),
-
 };

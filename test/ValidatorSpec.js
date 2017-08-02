@@ -1,7 +1,7 @@
 var Validator = ColorTools.Validator;
 
 describe("Validator Helper", function(){
-   describe("isColorName(name)", function(){
+    describe("isColorName(name)", function(){
        it("Returned true for a valid CSS color (cyan)", function(){
            expect(Validator.isColorName("cyan")).toBe(true);
        });
@@ -253,9 +253,33 @@ describe("Validator Helper", function(){
         });
     });
 
-    describe("isLinearGradient()", function () {
-        it("", function(){
-            Validator.isLinearGradient("linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%)");
-        })
-    })
+    describe("isColor(color)", function(){
+        it("Returned true for a valid CSS color name (cyan)", function(){
+            expect(Validator.isColor("cyan")).toBe(true);
+        });
+
+        it("Returned true for a valid hex color in long form (#f5f5f5)", function(){
+            expect(Validator.isColor("#f5f5f5")).toBe(true);
+        });
+
+        it("Returned true for a valid hex color in short form (#fff)", function(){
+            expect(Validator.isColor("#fff")).toBe(true);
+        });
+
+        it("Returned true for a valid rgb color ( rgb(255,255, 255) )", function(){
+            expect(Validator.isColor("rgb(255,255, 255)")).toBe(true);
+        });
+
+        it("Returned true for a valid rgba color ( rgb(255,255, 255) )", function(){
+            expect(Validator.isColor("rgba(255,255, 255, 1)")).toBe(true);
+        });
+
+        it("Returned true for a valid hsl color ( hsl(300, 100%, 100%) )", function(){
+            expect(Validator.isColor("hsl(300, 100%, 100%)")).toBe(true);
+        });
+
+        it("Returned true for a valid hsla color ( hsla(300, 100%, 100%, 1) )", function(){
+            expect(Validator.isColor("hsla(300, 100%, 100%, 1)")).toBe(true);
+        }); 
+    });
 });
