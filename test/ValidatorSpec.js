@@ -73,7 +73,6 @@ describe("Validator Helper", function(){
         it("Returned false when when one of the values was greater than 255 (rgb(260, 255, 255))", function(){
             expect(Validator.isRgb("rgb(260, 255, 255)")).toBe(false);
         });
-
     });
 
     describe("isRgba(color)", function(){

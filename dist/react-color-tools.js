@@ -64,63 +64,63 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Validator = _interopRequireWildcard(_Validator);
 
-	var _Parser = __webpack_require__(5);
+	var _Parser = __webpack_require__(6);
 
 	var Parser = _interopRequireWildcard(_Parser);
 
-	var _Ruler = __webpack_require__(6);
+	var _Ruler = __webpack_require__(7);
 
 	var _Ruler2 = _interopRequireDefault(_Ruler);
 
-	var _Gradient = __webpack_require__(7);
+	var _Gradient = __webpack_require__(8);
 
 	var _Gradient2 = _interopRequireDefault(_Gradient);
 
-	var _Input = __webpack_require__(8);
+	var _Input = __webpack_require__(9);
 
 	var _Input2 = _interopRequireDefault(_Input);
 
-	var _Swatch = __webpack_require__(9);
+	var _Swatch = __webpack_require__(10);
 
 	var _Swatch2 = _interopRequireDefault(_Swatch);
 
-	var _Saturation = __webpack_require__(10);
+	var _Saturation = __webpack_require__(11);
 
 	var _Saturation2 = _interopRequireDefault(_Saturation);
 
-	var _Hue = __webpack_require__(11);
+	var _Hue = __webpack_require__(12);
 
 	var _Hue2 = _interopRequireDefault(_Hue);
 
-	var _Opacity = __webpack_require__(12);
+	var _Opacity = __webpack_require__(13);
 
 	var _Opacity2 = _interopRequireDefault(_Opacity);
 
-	var _Lightness = __webpack_require__(13);
+	var _Lightness = __webpack_require__(14);
 
 	var _Lightness2 = _interopRequireDefault(_Lightness);
 
-	var _Wheel = __webpack_require__(14);
+	var _Wheel = __webpack_require__(15);
 
 	var _Wheel2 = _interopRequireDefault(_Wheel);
 
-	var _NoviColorPicker = __webpack_require__(15);
+	var _NoviColorPicker = __webpack_require__(16);
 
 	var _NoviColorPicker2 = _interopRequireDefault(_NoviColorPicker);
 
-	var _NoviGradientTool = __webpack_require__(16);
+	var _NoviGradientTool = __webpack_require__(17);
 
 	var _NoviGradientTool2 = _interopRequireDefault(_NoviGradientTool);
 
-	var _EnsoColorPicker = __webpack_require__(17);
+	var _EnsoColorPicker = __webpack_require__(18);
 
 	var _EnsoColorPicker2 = _interopRequireDefault(_EnsoColorPicker);
 
-	var _EnsoGradientTool = __webpack_require__(18);
+	var _EnsoGradientTool = __webpack_require__(19);
 
 	var _EnsoGradientTool2 = _interopRequireDefault(_EnsoGradientTool);
 
-	var _EnsoGradientRuler = __webpack_require__(19);
+	var _EnsoGradientRuler = __webpack_require__(20);
 
 	var _EnsoGradientRuler2 = _interopRequireDefault(_EnsoGradientRuler);
 
@@ -173,15 +173,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (!Validator.isHex(hex)) throw new Error("Invalid hex color");
 
 	    var color = hex;
-	    // Remove "#" from string
-	    color = color.slice(1);
 
 	    // convert short hex form to full
-	    if (color.length === 3) color = color[0] + color[0] + color[1] + color[1] + color[2] + color[2];
+	    if (color.length === 4) color = "#" + color[1] + color[1] + color[2] + color[2] + color[3] + color[3];
 
-	    var r = parseInt(color.substring(0, 2), 16);
-	    var g = parseInt(color.substring(4, 6), 16);
-	    var b = parseInt(color.substring(2, 4), 16);
+	    var r = parseInt(color.substring(1, 3), 16);
+	    var g = parseInt(color.substring(5, 7), 16);
+	    var b = parseInt(color.substring(3, 5), 16);
 	    return { r: r, g: g, b: b };
 	}
 
@@ -363,6 +361,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _CharCodes2 = _interopRequireDefault(_CharCodes);
 
+	var _RegEx = __webpack_require__(5);
+
+	var _RegEx2 = _interopRequireDefault(_RegEx);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
@@ -423,8 +425,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isRgb(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return (/^rgb\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\)$/i.test(color)
-	    );
+	    return _RegEx2.default.RGBONLY.test(color);
 	}
 
 	/**
@@ -439,8 +440,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isRgba(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return (/^rgba\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*((0?.[1-9])|[01])\s*\)$/i.test(color)
-	    );
+	    return _RegEx2.default.RGBAONLY.test(color);
 	}
 
 	/**
@@ -455,8 +455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isHsl(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return (/^hsl\(\s*(0|[1-9]\d?|[12]\d\d|3[0-5]\d)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0|[1-9]\d?|100)%)\s*\)$/i.test(color)
-	    );
+	    return _RegEx2.default.HSLONLY.test(color);
 	}
 
 	/**
@@ -471,8 +470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isHsla(color) {
 	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
-	    return (/^hsla\(\s*(0|[1-9]\d?|[12]\d\d|3[0-5]\d)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0?.[1-9])|[01]|(0|[1-9]\d?|100)%)\s*\)$/i.test(color)
-	    );
+	    return _RegEx2.default.HSLAONLY.test(color);
 	}
 
 	/**
@@ -723,6 +721,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var BYTE = "0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5]";
+	var PERCENTAGE = "0%|[1-9]\\d?%|100%";
+	var FRACTION = "(?:0|0?.[1-9]+)";
+	var DEGREES = "(?:0(?:deg)?|[1-9]\\d?(?:deg)?|[12]\\d\\d(?:deg)?|3[0-5]\\d(?:deg)?)";
+	var GRADIANS = "(?:0grad|[1-9]\\d?grad|[123]\\d\\dgrad|400grad)";
+	var RADIAN = "rad";
+	var TURN = "(?:" + FRACTION + ")turn";
+	// TODO: Add Radian regular
+	var ANGLE = DEGREES + "|" + GRADIANS + "|" + TURN;
+	var SIDE_CORNER = "to\\s+((?:(?:left|right)(?:\\s+(?:top|bottom))?))";
+	var HEX = "\\#[0-9a-f]{3}|[0-9a-f]{6}";
+	var RGB = "rgb\\(\\s*((" + BYTE + ")\\s*,\\s*(" + BYTE + ")\\s*,\\s*(" + BYTE + ")|(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + "))\\s*\\)";
+	var RGBA = "rgba\\(\\s*((" + BYTE + ")\\s*,\\s*(" + BYTE + ")\\s*,\\s*(" + BYTE + ")|(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + "))\\s*,\\s*(" + FRACTION + "|" + PERCENTAGE + ")\\s*\\)";
+	var HSL = "hsl\\(\\s*(" + ANGLE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*\\)$";
+	var HSLA = "hsla\\(\\s*(" + ANGLE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + FRACTION + "|" + PERCENTAGE + ")\\s*\\)";
+	var RGB_ONLY = "^" + RGB + "$";
+	var RGBA_ONLY = "^" + RGBA + "$";
+	var HSL_ONLY = "^" + HSL + "$";
+	var HSLA_ONLY = "^" + HSLA + "$";
+	var COLOR_STOP = HEX + "|" + RGB + "|" + RGBA + "|" + HSL + "|" + HSLA + "(?:\\s+" + PERCENTAGE + ")?";
+	var LINEAR_GRADIENT = "^linear-gradient\\(\\s*(" + ANGLE + "|" + SIDE_CORNER + "|)\\s*(?:,\\s(" + COLOR_STOP + "))+\\)$";
+
+	console.log(LINEAR_GRADIENT);
+
+	exports.default = {
+	    DEGREES: new RegExp(DEGREES, "i"),
+	    ANGLE: new RegExp(ANGLE, "i"),
+	    SIDE_CORNER: new RegExp(SIDE_CORNER, "i"),
+	    HEX: new RegExp(HEX, "i"),
+	    BYTE: new RegExp(BYTE, "i"),
+	    PERCENTAGE: new RegExp(PERCENTAGE, "i"),
+	    FRACTION: new RegExp(FRACTION, "i"),
+	    RGB_ONLY: new RegExp(RGB_ONLY, "i"),
+	    RGBA_ONLY: new RegExp(RGBA_ONLY, "i"),
+	    HSL_ONLY: new RegExp(HSL_ONLY, "i"),
+	    HSLA_ONLY: new RegExp(HSLA_ONLY, "i"),
+	    LINEAR_GRADIENT: new RegExp(LINEAR_GRADIENT, "i")
+
+	};
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -759,17 +806,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!Validator.isColorName(name)) throw new Error("Invalid color name");
 	  return _Colors2.default[name.toLowerCase()];
 	}
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {};
 
 /***/ }),
 /* 7 */
@@ -905,6 +941,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 19 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {};
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports) {
 
 	"use strict";

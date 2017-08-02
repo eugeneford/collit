@@ -1,5 +1,6 @@
 import colors from "./Colors";
 import charCodes from "./CharCodes";
+import regEx from "./RegEx";
 
 /**
  * Check if target name is a valid CSS1, CSS2.1, CSS3 color name
@@ -58,7 +59,7 @@ export function isHex(color){
  */
 export function isRgb(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return /^rgb\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*\)$/i.test(color);
+    return regEx.RGBONLY.test(color);
 }
 
 /**
@@ -73,7 +74,7 @@ export function isRgb(color){
  */
 export function isRgba(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return /^rgba\(\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*(0|[1-9]\d?|1\d\d?|2[0-4]\d|25[0-5])%?\s*,\s*((0?.[1-9])|[01])\s*\)$/i.test(color);
+    return regEx.RGBAONLY.test(color);
 }
 
 /**
@@ -88,7 +89,7 @@ export function isRgba(color){
  */
 export function isHsl(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return /^hsl\(\s*(0|[1-9]\d?|[12]\d\d|3[0-5]\d)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0|[1-9]\d?|100)%)\s*\)$/i.test(color);
+    return regEx.HSLONLY.test(color);
 }
 
 /**
@@ -103,7 +104,7 @@ export function isHsl(color){
  */
 export function isHsla(color){
     if(typeof color !== "string") throw new TypeError("Type of target name should be a String");
-    return /^hsla\(\s*(0|[1-9]\d?|[12]\d\d|3[0-5]\d)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0|[1-9]\d?|100)%)\s*,\s*((0?.[1-9])|[01]|(0|[1-9]\d?|100)%)\s*\)$/i.test(color);
+    return regEx.HSLAONLY.test(color);
 }
 
 /**
