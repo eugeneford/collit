@@ -454,13 +454,6 @@ var isColorToo = Validator.isColor("black") // true
 var isNotColor = Validator.isColor("color") // false
 ```
 
-#### isLinearGradient(gradient)
-
-#### isRadialGradient(gradient)
-
-#### isGradient(gradient)
-
-
 ### Parser
 Parser Helper allows you to parse a CSS based color definition into the ColorInfo object, which contains a hex, rgb and hsl values of target css value.
 
@@ -484,12 +477,4 @@ var color = Parser.parseColorName("black");
 
 #### parseHsba(color)
 
-#### parseColor(color)
-
-#### parseLinearGradient(gradient)
-
-#### parseRadialGradient(gradient)
-
-#### parseGradient(gradient)
-
-#### parse(value)
+#### parseColor(color)  
