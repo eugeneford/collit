@@ -729,6 +729,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.parseColorName = parseColorName;
 	exports.parseHex = parseHex;
 	exports.parseRgb = parseRgb;
+	exports.parseHsl = parseHsl;
 
 	var _Colors = __webpack_require__(3);
 
@@ -761,7 +762,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * var color = Parser.parseColorName("black"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 	 */
 	function parseColorName(name) {
-	  if (typeof name !== "string") throw new TypeError("Type of target colorName should be a String");
+	  if (typeof name !== "string") throw new TypeError("Type of target name should be a String");
 	  if (!Validator.isColorName(name)) throw new Error("Invalid color name");
 	  return _Colors2.default[name.toLowerCase()];
 	}
@@ -777,7 +778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * var color = Parser.parseHex("#000"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 	 */
 	function parseHex(color) {
-	  if (typeof color !== "string") throw new TypeError("Type of target colorName should be a String");
+	  if (typeof color !== "string") throw new TypeError("Type of target color should be a String");
 	  if (!Validator.isHex(color)) throw new Error("Invalid hex color (should be eg. #fff or #000000");
 	  var hex = void 0,
 	      rgb = void 0,
@@ -801,7 +802,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * var color = Parser.parseRgb("rgb(128,128,128"); // color => { hex: "#808080", rgb: {r:128, g:128, b:128}, hsl: {h:0, s:0, l:0.5}}
 	 */
 	function parseRgb(color) {
-	  if (typeof color !== "string") throw new TypeError("Type of target colorName should be a String");
+	  if (typeof color !== "string") throw new TypeError("Type of target color should be a String");
 	  var colorChunks = void 0,
 	      hex = void 0,
 	      rgb = void 0,
@@ -817,6 +818,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	  rgb = { r: +colorChunks[2], g: +colorChunks[3], b: +colorChunks[4] };
 	  hex = Converter.rgbToHex(rgb);
 	  hsl = Converter.rgbToHsl(rgb);
+
+	  return { hex: hex, rgb: rgb, hsl: hsl };
+	}
+
+	/**
+	 * Parse a valid css hsl color into a set of hex, rgb and hsl values
+	 * @param color - a string to be parsed
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was not a valid css hsl color
+	 * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseHsl("hsl(240,100%,50%"); // color => { hex: "#00f", rgb: {r:0, g:0, b:255}, hsl: {h:240, s:1, l:0.5}}
+	 */
+	function parseHsl(color) {
+	  if (typeof color !== "string") throw new TypeError("Type of target color should be a String");
+	  var colorChunks = void 0,
+	      hex = void 0,
+	      rgb = void 0,
+	      hsl = void 0;
+
+	  // Try to split initial string to h, s, l chunks
+	  colorChunks = color.match(_RegEx2.default.HSL_ONLY);
+
+	  // Throw an error if chunks was not created
+	  if (!colorChunks) throw new Error("Invalid css hsl color (should be eg. hsl(240, 100%, 50%)");
+
+	  // Or build colorInfo
+	  hsl = { h: +colorChunks[1], s: parseFloat(colorChunks[2]) / 100, l: parseFloat(colorChunks[3]) / 100 };
+	  rgb = Converter.hslToRgb(hsl);
+	  hex = Converter.rgbToHex(rgb);
 
 	  return { hex: hex, rgb: rgb, hsl: hsl };
 	}
