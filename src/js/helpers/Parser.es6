@@ -1,4 +1,5 @@
 import colors from "./Colors";
+import regEx from "./RegEx";
 import * as Validator from "./Validator";
 import * as Converter from "./Converter";
 
@@ -39,3 +40,31 @@ export function parseHex(color){
 
     return { hex, rgb, hsl };
 }
+
+/**
+ * Parse a valid css rgb color into a set of hex, rgb and hsl values
+ * @param color - a string to be parsed
+ * @throws TypeError — if type of value passed to function was not a string
+ * @throws Error — if color name passed to function was not a valid css rgb color
+ * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
+ *
+ * @example
+ * var color = Parser.parseRgb("rgb(128,128,128"); // color => { hex: "#808080", rgb: {r:128, g:128, b:128}, hsl: {h:0, s:0, l:0.5}}
+ */
+export function parseRgb(color){
+  if (typeof color !== "string") throw new TypeError("Type of target colorName should be a String");
+  let colorChunks, hex, rgb, hsl;
+
+  // Try to split initial string to r, g, b chunks
+  colorChunks = color.match(regEx.RGB_ONLY);
+
+  // Throw an error if chunks was not created
+  if(!colorChunks) throw new Error("Invalid css rgb color (should be eg. rgb(0,0,0)");
+
+  // Or build colorInfo
+  rgb = { r: +colorChunks[2], g: +colorChunks[3], b: +colorChunks[4] };
+  hex = Converter.rgbToHex(rgb);
+  hsl = Converter.rgbToHsl(rgb);
+
+  return { hex, rgb, hsl };
+} 

@@ -728,10 +728,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.parseColorName = parseColorName;
 	exports.parseHex = parseHex;
+	exports.parseRgb = parseRgb;
 
 	var _Colors = __webpack_require__(3);
 
 	var _Colors2 = _interopRequireDefault(_Colors);
+
+	var _RegEx = __webpack_require__(5);
+
+	var _RegEx2 = _interopRequireDefault(_RegEx);
 
 	var _Validator = __webpack_require__(2);
 
@@ -781,6 +786,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	  hex = color.toLowerCase();
 	  rgb = Converter.hexToRgb(hex);
 	  hsl = Converter.hexToHsl(hex);
+
+	  return { hex: hex, rgb: rgb, hsl: hsl };
+	}
+
+	/**
+	 * Parse a valid css rgb color into a set of hex, rgb and hsl values
+	 * @param color - a string to be parsed
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was not a valid css rgb color
+	 * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseRgb("rgb(128,128,128"); // color => { hex: "#808080", rgb: {r:128, g:128, b:128}, hsl: {h:0, s:0, l:0.5}}
+	 */
+	function parseRgb(color) {
+	  if (typeof color !== "string") throw new TypeError("Type of target colorName should be a String");
+	  var colorChunks = void 0,
+	      hex = void 0,
+	      rgb = void 0,
+	      hsl = void 0;
+
+	  // Try to split initial string to r, g, b chunks
+	  colorChunks = color.match(_RegEx2.default.RGB_ONLY);
+
+	  // Throw an error if chunks was not created
+	  if (!colorChunks) throw new Error("Invalid css rgb color (should be eg. rgb(0,0,0)");
+
+	  // Or build colorInfo
+	  rgb = { r: +colorChunks[2], g: +colorChunks[3], b: +colorChunks[4] };
+	  hex = Converter.rgbToHex(rgb);
+	  hsl = Converter.rgbToHsl(rgb);
 
 	  return { hex: hex, rgb: rgb, hsl: hsl };
 	}
