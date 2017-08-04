@@ -774,4 +774,26 @@ describe("Parser Helper", function () {
       });
     });
   });
+
+  describe("parseRgb(color)", function () {
+    it("Threw a TypeError when color was not a string", function () {
+      expect(function () {
+        Parser.parseRgb(123)
+      }).toThrowError(TypeError);
+    });
+
+    it("Threw an Error when color was not a css rgb string", function () {
+      expect(function () {
+        Parser.parseRgb("rgb( 3 3,2")
+      }).toThrowError(Error);
+    });
+
+    it("Successfully parsed valid css rgb color", function () {
+      expect(Parser.parseRgb("rgb( 128, 128, 128 )")).toEqual({
+        hex: "#808080",
+        rgb: { r: 128, g: 128, b: 128 },
+        hsl: { h: 0, s: 0, l: .5 }
+      });
+    })
+  });
 });
