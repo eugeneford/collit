@@ -484,7 +484,16 @@ var color = Parser.parseRgb("rgb(128,128,128");
 
 // color => { hex: "#808080", rgb: {r:128, g:128, b:128}, hsl: {h:0, s:0, l:0.5}}
 ```
+
 #### parseHsl(color)
+Parse a valid css hsl color into a set of hex, rgb and hsl values
+```js
+import { Parser } from "react-color-tools";
+
+var color = Parser.parseHsl("hsl(240,100%,50%");
+
+// color => { hex: "#00f", rgb: {r:0, g:0, b:255}, hsl: {h:240, s:1, l:0.5}}
+```
 
 #### parseRgba(color)
 
