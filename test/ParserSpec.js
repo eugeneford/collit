@@ -796,4 +796,26 @@ describe("Parser Helper", function () {
       });
     })
   });
+
+  describe("parseHsl(color)", function () {
+    it("Threw a TypeError when color was not a string", function () {
+      expect(function () {
+        Parser.parseHsl(123)
+      }).toThrowError(TypeError);
+    });
+
+    it("Threw an Error when color was not a css hsl string", function () {
+      expect(function () {
+        Parser.parseHsl("hsl( 3 3% 2%")
+      }).toThrowError(Error);
+    });
+
+    it("Successfully parsed valid css hsl color", function () {
+      expect(Parser.parseHsl("hsl( 240, 100%, 50% )")).toEqual({
+        hex: "#00f",
+        rgb: { r: 0, g: 0, b: 255 },
+        hsl: { h: 240, s: 1, l: .5 }
+      });
+    });
+  });
 });
