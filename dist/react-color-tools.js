@@ -349,9 +349,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.isHsl = isHsl;
 	exports.isHsla = isHsla;
 	exports.isColor = isColor;
-	exports.isGradient = isGradient;
-	exports.isLinearGradient = isLinearGradient;
-	exports.isRadialGradient = isRadialGradient;
 
 	var _Colors = __webpack_require__(3);
 
@@ -485,51 +482,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isColor(color) {
 	    return isColorName(color) || isHex(color) || isRgb(color) || isRgba(color) || isHsl(color) || isHsla(color);
-	}
-
-	/**
-	 * Check if target string is a valid css gradient definition
-	 * @param gradient — target gradient string to test
-	 * @returns {boolean}
-	 *
-	 * @example
-	 * var isHsla = Validator.isGradient("hsla(0,0%,0%, .5)") // true
-	 * var isNotHsla = Validator.isGradient("hsl( 0, 5, 100% )") // false
-	 */
-	function isGradient(gradient) {
-	    return isLinearGradient(gradient) || isRadialGradient(gradient);
-	}
-
-	/**
-	 * Check if target string is a valid css gradient definition
-	 * @param gradient — target gradient string to test
-	 * @throws TypeError — if type of color that was passed is not a string
-	 * @returns {boolean}
-	 *
-	 * @example
-	 * var isHsla = Validator.isLinearGradient("hsla(0,0%,0%, .5)") // true
-	 * var isNotHsla = Validator.isLinearGradient("hsl( 0, 5, 100% )") // false
-	 */
-	function isLinearGradient(gradient) {
-	    if (typeof gradient !== "string") throw new TypeError("Type of target name should be a String");
-
-	    // checking for general linear-gradient syntax
-	    var matches = /^linear-gradient\([^(]*(\([^)]*\)[^(]*)*[^)]*\)$/g.exec(gradient);
-	    console.dir(matches);
-	}
-
-	/**
-	 * Check if target string is a valid css gradient definition
-	 * @param gradient — target gradient string to test
-	 * @throws TypeError — if type of color that was passed is not a string
-	 * @returns {boolean}
-	 *
-	 * @example
-	 * var isHsla = Validator.isRadialGradient("hsla(0,0%,0%, .5)") // true
-	 * var isNotHsla = Validator.isRadialGradient("hsl( 0, 5, 100% )") // false
-	 */
-	function isRadialGradient(gradient) {
-	    if (typeof color !== "string") throw new TypeError("Type of target name should be a String");
 	}
 
 /***/ }),
@@ -775,6 +727,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	exports.parseColorName = parseColorName;
+	exports.parseHex = parseHex;
 
 	var _Colors = __webpack_require__(3);
 
@@ -783,6 +736,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _Validator = __webpack_require__(2);
 
 	var Validator = _interopRequireWildcard(_Validator);
+
+	var _Converter = __webpack_require__(1);
+
+	var Converter = _interopRequireWildcard(_Converter);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -802,6 +759,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (typeof name !== "string") throw new TypeError("Type of target colorName should be a String");
 	  if (!Validator.isColorName(name)) throw new Error("Invalid color name");
 	  return _Colors2.default[name.toLowerCase()];
+	}
+
+	/**
+	 * Parse a valid hex color into a set of hex, rgb and hsl values
+	 * @param color - a string to be parsed
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was not a valid hex color
+	 * @returns {{hex: string, rgb: {r: number, g:number, b:number}, hsl: {h: number, s:number, l:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseHex("#000"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
+	 */
+	function parseHex(color) {
+	  if (typeof color !== "string") throw new TypeError("Type of target colorName should be a String");
+	  if (!Validator.isHex(color)) throw new Error("Invalid hex color (should be eg. #fff or #000000");
+	  var hex = void 0,
+	      rgb = void 0,
+	      hsl = void 0;
+
+	  hex = color.toLowerCase();
+	  rgb = Converter.hexToRgb(hex);
+	  hsl = Converter.hexToHsl(hex);
+
+	  return { hex: hex, rgb: rgb, hsl: hsl };
 	}
 
 /***/ }),
