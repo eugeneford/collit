@@ -1,7 +1,7 @@
 path = require("path");
 
 module.exports = {
-  entry: "./src/js/collit",
+  entry: "./src/collit",
   output: {
     filename: "./dist/collit.js",
     libraryTarget: 'umd',
@@ -13,7 +13,7 @@ module.exports = {
     loaders: [{
       test: /\.es6$/,
       include: [
-        path.resolve(__dirname, "src/js/")
+        path.resolve(__dirname, "src/")
       ],
       loader: 'babel-loader'
     }]
