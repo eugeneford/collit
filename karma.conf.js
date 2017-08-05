@@ -5,6 +5,9 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
+    coverageReporter: {
+      type: 'lcov', dir: 'coverage/'
+    },
     files: [
       'dist/collit.js',
       'test/*.js'
@@ -12,7 +15,7 @@ module.exports = function(config) {
     preprocessors: {
       'dist/collit.js': ['coverage']
     },
-    reporters: ['kjhtml', 'coverage'],
+    reporters: ['kjhtml', 'coverage', 'coveralls'],
     port: 9876,
     browsers: [],
     singleRun: false,
