@@ -1,4 +1,4 @@
-var Validator = ColorTools.Validator;
+var Validator = Collit.Validator;
 
 describe("Validator Helper", function(){
     describe("isColorName(name)", function(){

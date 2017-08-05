@@ -1,4 +1,4 @@
-var Converter = ColorTools.Converter;
+var Converter = Collit.Converter;
 
 describe("Converter Helper", function () {
 

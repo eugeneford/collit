@@ -1,17 +1,17 @@
 path = require("path");
 
 module.exports = {
-  entry: "./src/js/react-color-tools",
+  entry: "./src/js/collit",
   output: {
-    filename: "./dist/react-color-tools.js",
+    filename: "./dist/collit.js",
     libraryTarget: 'umd',
-    library: 'ColorTools',
+    library: 'Collit',
     auxiliaryComment: "istanbul ignore next"
   },
 
   module: {
     loaders: [{
-      test: /\.(es6)|(jsx)$/,
+      test: /\.es6$/,
       include: [
         path.resolve(__dirname, "src/js/")
       ],
@@ -20,6 +20,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.es6', '.jsx']
+    extensions: ['', '.js', '.es6']
   }
 };

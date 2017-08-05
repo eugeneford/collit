@@ -6,11 +6,11 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      'dist/react-color-tools.js',
+      'dist/collit.js',
       'test/*.js'
     ],
     preprocessors: {
-      'dist/react-color-tools.js': ['coverage']
+      'dist/collit.js': ['coverage']
     },
     reporters: ['kjhtml', 'coverage'],
     port: 9876,

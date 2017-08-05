@@ -1,4 +1,4 @@
-var Parser = ColorTools.Parser;
+var Parser = Collit.Parser;
 
 describe("Parser Helper", function () {
   describe("parseColorName(value)", function () {
