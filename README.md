@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/eugeneford/collit/master/.github/collit-logo.png" width="100" height="100">
+</p>
+
 <h3 align="center">
   Collit
 </h3>
