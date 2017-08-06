@@ -8,8 +8,8 @@
 
 <p align="center">
   <a href="https://travis-ci.org/eugeneford/collit.svg?branch=master">
-    <img src="https://travis-ci.org/eugeneford/collit alt="Build Status">
-  </a>  
+    <img src="https://travis-ci.org/eugeneford/collit" alt="Build Status">
+  </a>
 </p>
 
 ## How to Install
