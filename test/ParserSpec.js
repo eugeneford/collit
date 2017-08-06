@@ -818,4 +818,48 @@ describe("Parser Helper", function () {
       });
     });
   });
+
+  describe("parseRgba(color)", function () {
+    it("Threw a TypeError when color was not a string", function () {
+      expect(function () {
+        Parser.parseRgba(123)
+      }).toThrowError(TypeError);
+    });
+
+    it("Threw an Error when color was not a css rgba string", function () {
+      expect(function () {
+        Parser.parseRgba("rgba( 3 3,2")
+      }).toThrowError(Error);
+    });
+
+    it("Successfully parsed valid css rgba color", function () {
+      expect(Parser.parseRgba("rgba( 255, 0, 0, .5 )")).toEqual({
+        hex: "#f00",
+        rgb: { r: 255, g: 0, b: 0, a: .5 },
+        hsl: { h: 0, s: 1, l: .5, a: .5 }
+      });
+    })
+  });
+
+  describe("parseHsla(color)", function () {
+    it("Threw a TypeError when color was not a string", function () {
+      expect(function () {
+        Parser.parseHsla(123)
+      }).toThrowError(TypeError);
+    });
+
+    it("Threw an Error when color was not a css hsla string", function () {
+      expect(function () {
+        Parser.parseHsla("hsla( 3 3,2")
+      }).toThrowError(Error);
+    });
+
+    it("Successfully parsed valid css hsla color", function () {
+      expect(Parser.parseHsla("hsla( 120, 100%, 50%, .5 )")).toEqual({
+        hex: "#0f0",
+        rgb: { r: 0, g: 255, b: 0, a: .5 },
+        hsl: { h: 120, s: 1, l: .5, a: .5 }
+      });
+    })
+  });
 });

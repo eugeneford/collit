@@ -236,8 +236,22 @@ var color = Parser.parseHsl("hsl(240,100%,50%");
 ```
 
 ### parseRgba(color)
+Parse a valid css rgba color into a set of hex, rgb and hsl values
+```js
+import Parser from "collit";
+
+var color = Parser.parseRgba("rgba(255,0,0,.5)");
+// color => { hex: "#f00", rgb: {r:255, g:0, b:0, a: 0.5}, hsl: {h:0, s:1, l: 0.5, a: 0.5} }
+```
 
 ### parseHsla(color)
+Parse a valid css hsla color into a set of hex, rgb and hsl values
+```js
+@import Parser from "collit";
+
+var color = Parser.parseRgba("hsla(0,255,0,.5)");
+// color => { hex: "#0f0", rgb: {r:0, g:255, b:0, a: 0.5}, hsl: {h:120, s:1, l: 0.5, a: 0.5} }
+```
 
 ### parseColor(color)
 

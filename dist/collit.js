@@ -171,7 +171,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function rgbToHsl(rgb) {
 	    if ((typeof rgb === "undefined" ? "undefined" : _typeof(rgb)) !== 'object') throw new TypeError("Type of " + rgb + " is not an Object!");
 	    if (rgb.r == null || rgb.g == null || rgb.b == null) throw new Error("Invalid RGB color");
-
+	    var hsl = void 0;
 	    var r = rgb.r / 255,
 	        g = rgb.g / 255,
 	        b = rgb.b / 255;
@@ -207,7 +207,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    s = Math.round(s * 100) / 100;
 	    l = Math.round(l * 100) / 100;
 
-	    return { h: h, s: s, l: l };
+	    hsl = { h: h, s: s, l: l };
+
+	    //Try to append alpha from original color
+	    if (rgb.a !== null && rgb.a !== undefined) hsl.a = rgb.a;
+
+	    return hsl;
 	}
 
 	/**
@@ -239,7 +244,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if ((typeof hsl === "undefined" ? "undefined" : _typeof(hsl)) !== 'object') throw new TypeError("Type of " + hsl + " is not an Object!");
 
 	    if (hsl.h == null || hsl.s == null || hsl.l == null) throw new Error("Invalid HSL color");
-	    var r = void 0,
+	    var rgb = void 0,
+	        r = void 0,
 	        g = void 0,
 	        b = void 0,
 	        h = hsl.h / 360,
@@ -270,7 +276,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    g = Math.round(g * 255);
 	    b = Math.round(b * 255);
 
-	    return { r: r, g: g, b: b };
+	    rgb = { r: r, g: g, b: b };
+
+	    //Try to append alpha from original color
+	    if (hsl.a !== null && hsl.a !== undefined) rgb.a = hsl.a;
+
+	    return rgb;
 	}
 
 /***/ }),
@@ -637,12 +648,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var HSLA = "hsla\\(\\s*(" + ANGLE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + PERCENTAGE + ")\\s*,\\s*(" + FRACTION + "|" + PERCENTAGE + ")\\s*\\)";
 	var COLOR_STOP = HEX + "|" + RGB + "|" + RGBA + "|" + HSL + "|" + HSLA + "(?:\\s+" + PERCENTAGE + ")?";
 
-	// Color RegExp
-	var RGB_ONLY = "^" + RGB + "$";
-	var RGBA_ONLY = "^" + RGBA + "$";
-	var HSL_ONLY = "^" + HSL + "$";
-	var HSLA_ONLY = "^" + HSLA + "$";
-
 	exports.default = {
 	    DEGREES: new RegExp(DEGREES, "i"),
 	    ANGLE: new RegExp(ANGLE, "i"),
@@ -651,10 +656,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    BYTE: new RegExp(BYTE, "i"),
 	    PERCENTAGE: new RegExp(PERCENTAGE, "i"),
 	    FRACTION: new RegExp(FRACTION, "i"),
-	    RGB_ONLY: new RegExp(RGB_ONLY, "i"),
-	    RGBA_ONLY: new RegExp(RGBA_ONLY, "i"),
-	    HSL_ONLY: new RegExp(HSL_ONLY, "i"),
-	    HSLA_ONLY: new RegExp(HSLA_ONLY, "i")
+	    RGB_ONLY: new RegExp("^" + RGB + "$", "i"),
+	    RGBA_ONLY: new RegExp("^" + RGBA + "$", "i"),
+	    HSL_ONLY: new RegExp("^" + HSL + "$", "i"),
+	    HSLA_ONLY: new RegExp("^" + HSLA + "$", "i")
 	};
 
 /***/ }),
@@ -670,6 +675,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.parseHex = parseHex;
 	exports.parseRgb = parseRgb;
 	exports.parseHsl = parseHsl;
+	exports.parseRgba = parseRgba;
+	exports.parseHsla = parseHsla;
 
 	var _Colors = __webpack_require__(3);
 
@@ -787,6 +794,68 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  // Or build colorInfo
 	  hsl = { h: +colorChunks[1], s: parseFloat(colorChunks[2]) / 100, l: parseFloat(colorChunks[3]) / 100 };
+	  rgb = Converter.hslToRgb(hsl);
+	  hex = Converter.rgbToHex(rgb);
+
+	  return { hex: hex, rgb: rgb, hsl: hsl };
+	}
+
+	/**
+	 * Parse a valid css rgba color into a set of hex, rgb and hsl values
+	 * @param color - a string to be parsed
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was not a valid css rgba color
+	 * @returns {{hex: string, rgb: {r: number, g:number, b:number, a:number}, hsl: {h: number, s:number, l:number, a:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseRgba("rgba(255,0,0,.5)"); // color => { hex: "#f00", rgb: {r:255, g:0, b:0, a: 0.5}, hsl: {h:0, s:1, l: 0.5, a: 0.5} }
+	 */
+	function parseRgba(color) {
+	  if (typeof color !== "string") throw new TypeError("Type of target color should be a String");
+	  var colorChunks = void 0,
+	      hex = void 0,
+	      rgb = void 0,
+	      hsl = void 0;
+
+	  // Try to split initial string to h, s, l chunks
+	  colorChunks = color.match(_RegEx2.default.RGBA_ONLY);
+
+	  // Throw an error if chunks was not created
+	  if (!colorChunks) throw new Error("Invalid css rgba color (should be eg. rgba(255, 0, 0, .5)");
+
+	  // Or build colorInfo
+	  rgb = { r: +colorChunks[2], g: +colorChunks[3], b: +colorChunks[4], a: +colorChunks[8] };
+	  hsl = Converter.rgbToHsl(rgb);
+	  hex = Converter.rgbToHex(rgb);
+
+	  return { hex: hex, rgb: rgb, hsl: hsl };
+	}
+
+	/**
+	 * Parse a valid css hsla color into a set of hex, rgb and hsl values
+	 * @param color - a string to be parsed
+	 * @throws TypeError — if type of value passed to function was not a string
+	 * @throws Error — if color name passed to function was not a valid css hsla color
+	 * @returns {{hex: string, rgb: {r: number, g:number, b:number, a:number}, hsl: {h: number, s:number, l:number, a:number}}}
+	 *
+	 * @example
+	 * var color = Parser.parseRgba("hsla(0,255,0,.5)"); // color => { hex: "#0f0", rgb: {r:0, g:255, b:0, a: 0.5}, hsl: {h:120, s:1, l: 0.5, a: 0.5} }
+	 */
+	function parseHsla(color) {
+	  if (typeof color !== "string") throw new TypeError("Type of target color should be a String");
+	  var colorChunks = void 0,
+	      hex = void 0,
+	      rgb = void 0,
+	      hsl = void 0;
+
+	  // Try to split initial string to h, s, l chunks
+	  colorChunks = color.match(_RegEx2.default.HSLA_ONLY);
+
+	  // Throw an error if chunks was not created
+	  if (!colorChunks) throw new Error("Invalid css hsla color (should be eg. hsla(120, 100%, 50%, .5)");
+
+	  // Or build colorInfo
+	  hsl = { h: +colorChunks[1], s: parseFloat(colorChunks[2]) / 100, l: parseFloat(colorChunks[3]) / 100, a: +colorChunks[4] };
 	  rgb = Converter.hslToRgb(hsl);
 	  hex = Converter.rgbToHex(rgb);
 

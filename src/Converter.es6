@@ -73,7 +73,7 @@ export function rgbToHex(rgb) {
 export function rgbToHsl(rgb) {
     if (typeof rgb !== 'object') throw new TypeError(`Type of ${rgb} is not an Object!`);
     if (rgb.r == null || rgb.g == null || rgb.b == null) throw  new Error("Invalid RGB color");
-
+    let hsl;
     let r = rgb.r / 255, g = rgb.g / 255, b = rgb.b / 255;
 
     let max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -104,7 +104,12 @@ export function rgbToHsl(rgb) {
     s = Math.round(s * 100) / 100;
     l = Math.round(l * 100) / 100;
 
-    return {h, s, l};
+    hsl = {h, s, l};
+
+    //Try to append alpha from original color
+    if (rgb.a !== null && rgb.a !== undefined) hsl.a = rgb.a;
+
+    return hsl;
 }
 
 
@@ -138,7 +143,7 @@ export function hslToRgb(hsl) {
     if (typeof hsl !== 'object') throw new TypeError(`Type of ${hsl} is not an Object!`);
 
     if (hsl.h == null || hsl.s == null || hsl.l == null) throw  new Error("Invalid HSL color");
-    let r, g, b, h = hsl.h / 360, s = hsl.s, l = hsl.l;
+    let rgb, r, g, b, h = hsl.h / 360, s = hsl.s, l = hsl.l;
 
     if (s === 0) {
         r = g = b = l;
@@ -164,5 +169,10 @@ export function hslToRgb(hsl) {
     g = Math.round(g * 255);
     b = Math.round(b * 255);
 
-    return {r, g, b};
+    rgb = {r, g, b};
+
+    //Try to append alpha from original color
+    if (hsl.a !== null && hsl.a !== undefined) rgb.a = hsl.a;
+
+    return rgb;
 }

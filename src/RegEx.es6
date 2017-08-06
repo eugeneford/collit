@@ -14,12 +14,6 @@ const HSL = `hsl\\(\\s*(${ANGLE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${PERCENTAGE}
 const HSLA = `hsla\\(\\s*(${ANGLE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${PERCENTAGE})\\s*,\\s*(${FRACTION}|${PERCENTAGE})\\s*\\)`;
 const COLOR_STOP = `${HEX}|${RGB}|${RGBA}|${HSL}|${HSLA}(?:\\s+${PERCENTAGE})?`;
 
-// Color RegExp
-const RGB_ONLY = `^${RGB}$`;
-const RGBA_ONLY = `^${RGBA}$`;
-const HSL_ONLY = `^${HSL}$`;
-const HSLA_ONLY = `^${HSLA}$`;
-
 export default {
     DEGREES: new RegExp(DEGREES, "i"),
     ANGLE: new RegExp(ANGLE, "i"),
@@ -28,8 +22,8 @@ export default {
     BYTE: new RegExp(BYTE, "i"),
     PERCENTAGE: new RegExp(PERCENTAGE, "i"),
     FRACTION: new RegExp(FRACTION, "i"),
-    RGB_ONLY: new RegExp(RGB_ONLY, "i"),
-    RGBA_ONLY:  new RegExp(RGBA_ONLY, "i"),
-    HSL_ONLY: new RegExp(HSL_ONLY, "i"),
-    HSLA_ONLY: new RegExp(HSLA_ONLY, "i"),
+    RGB_ONLY: new RegExp(`^${RGB}$`, "i"),
+    RGBA_ONLY:  new RegExp(`^${RGBA}$`, "i"),
+    HSL_ONLY: new RegExp(`^${HSL}$`, "i"),
+    HSLA_ONLY: new RegExp(`^${HSLA}$`, "i"),
 };
