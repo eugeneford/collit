@@ -75,13 +75,13 @@ var color = Parser.parseRgb("rgb(128,128,128");
 ```
 
 ## Converter
-Converter helper allows you to convert hex to rgb, rgb to hex, hsl to rgb, rgb to hsl, hex to hsl, hsl to hex etc.
- 
+Convert one specific color format into another. (Hex, RGB, HSL).
+
 ### hexToRgb(hex)
 Converts an HEX color value to RGB.
 
 ```js
-import { Converter } from "collit";
+import Converter from "collit"; // or var Converter = Collit.Converter if using in browser
 
 var rgb = Converter.hexToRgb("#333"); // rgb => {r:51, g:51, b: 51};
 ```
@@ -91,7 +91,7 @@ Converts an HEX color value to HSL.
 > Converting hex to hsl is done using a additional converting to RGB. HEX -> RGB -> HSL.
 
 ```js
-import { Converter } from "collit";
+import Converter from "collit"; // or var Converter = Collit.Converter if using in browser
 
 var hsl = Converter.hexToHsl("#333"); // hsl => {h: 0, s: 0, l: 0.2};
 ```
@@ -99,7 +99,7 @@ var hsl = Converter.hexToHsl("#333"); // hsl => {h: 0, s: 0, l: 0.2};
 ### rgbToHex(rgb)
 Converts an RGB color value to HEX.
 ```js
-import { Converter } from "collit";
+import Converter from "collit"; // or var Converter = Collit.Converter if using in browser
 
 var hex = Converter.rgbToHex({r: 51, g: 51, b: 51}); // hex => "#333";
 ```
@@ -107,8 +107,6 @@ var hex = Converter.rgbToHex({r: 51, g: 51, b: 51}); // hex => "#333";
 ### rgbToHsl(rgb)
 Converts an RGB color value to HSL.
 ```js
-import { Converter } from "collit";
-
 var hsl = Converter.rgbToHsl({r: 11, g: 11, b: 11}); // hsl => {h: 0, s: 0, l: 0.04};
 ```
 
@@ -117,7 +115,7 @@ Converts an HSL color value to Hex.
 > Converting hsl to hex is done using a additional converting to RGB. HSL -> RGB -> HEX.
 
 ```js
-import { Converter } from "collit";
+import Converter from "collit"; // or var Converter = Collit.Converter if using in browser
 
 var hex = Converter.hslToHex({h: 0, s: 0.5, l: 0.3}); // hex => "#732626;
 ```
@@ -125,7 +123,7 @@ var hex = Converter.hslToHex({h: 0, s: 0.5, l: 0.3}); // hex => "#732626;
 ### hslToRgb(hsl)
 Converts an HSL color value to RGB.
 ```js
-import { Converter } from "collit";
+import Converter from "collit"; // or var Converter = Collit.Converter if using in browser
 
 var rgb = Converter.hslToRgb({h: 300, s: 0.5, l: 0.5}); // rgb => {r: 191, g: 64, b: 191};
 ```
@@ -136,6 +134,8 @@ Validator Helper that allows you to check if color is defined as a correct hex, 
 ### isColorName(name)
 Check if target name is a valid CSS1, CSS2.1, CSS3 color name
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isColor = Validator.isColorName("black"); // true
 var isNotColor = Validator.isColorName("avadakedavra"); // false
 ```
@@ -143,6 +143,8 @@ var isNotColor = Validator.isColorName("avadakedavra"); // false
 ### isHex(color)
 Check if target string is a valid hex color
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isHex = Validator.isHex("#333"); // true
 var isNotHex = Validator.isHex("#rgb"); // false
 ``` 
@@ -150,6 +152,8 @@ var isNotHex = Validator.isHex("#rgb"); // false
 ### isRgb(color)
 Check if target string is a valid css rgb color definition
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isRgb = Validator.isRgb("rgb( 0, 0, 0 )") // true
 var isNotRgb = Validator.isRgb("hsl( 0, 0, 100% )") // false
 ```
@@ -158,6 +162,8 @@ var isNotRgb = Validator.isRgb("hsl( 0, 0, 100% )") // false
 
 Check if target string is a valid css HSL color definition
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isHsl = Validator.isHsl("hsl(0,0%,0%)") // true
 var isNotHsl = Validator.isHsl("hsl( 0, 5, 100% )") // false
 ```
@@ -165,6 +171,8 @@ var isNotHsl = Validator.isHsl("hsl( 0, 5, 100% )") // false
 ### isRgba(color)
 Check if target string is a valid css rgba color definition
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isRgba = Validator.isRgba("rgba(255,255,255,.5)") // true
 var isNotRgba = Validator.isRgba("hsla(255,100%,100%,.5)") // false
 ```
@@ -172,6 +180,8 @@ var isNotRgba = Validator.isRgba("hsla(255,100%,100%,.5)") // false
 ### isHsla(color)
 Check if target string is a valid css HSLa color definition
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isHsla = Validator.isHsla("hsla(0,0%,0%, .5)") // true
 var isNotHsla = Validator.isHsla("hsl( 0, 5, 100% )") // false
 ```
@@ -179,6 +189,8 @@ var isNotHsla = Validator.isHsla("hsl( 0, 5, 100% )") // false
 ### isColor(color)
 Check if target string is a valid css color definition
 ```js
+import Validator from "collit"; // or var Validator = Collit.Validator if using in browser
+
 var isColor = Validator.isColor("hsla(0,0%,0%, .5)") // true
 var isColorToo = Validator.isColor("black") // true
 var isNotColor = Validator.isColor("color") // false
@@ -190,6 +202,8 @@ Parser Helper allows you to parse a CSS based color definition into the ColorInf
 ### parseColorName(name)
 Parse a valid CSS1, CSS2.1, CSS3 color name into a set of hex, rgb and hsl values.
 ```js
+import Parser from "collit"; // or var Parser = Collit.Parser if using in browser
+
 var color = Parser.parseColorName("black");
 // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 ```
@@ -197,6 +211,8 @@ var color = Parser.parseColorName("black");
 ### parseHex(color)
 Parse a valid hex color into a set of hex, rgb and hsl values
 ```js
+import Parser from "collit"; // or var Parser = Collit.Parser if using in browser
+
 var color = Parser.parseHex("#000");
 // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
 ```
@@ -204,6 +220,8 @@ var color = Parser.parseHex("#000");
 ### parseRgb(color)
 Parse a valid css rgb color into a set of hex, rgb and hsl values
 ```js
+import Parser from "collit"; // or var Parser = Collit.Parser if using in browser
+
 var color = Parser.parseRgb("rgb(128,128,128");
 // color => { hex: "#808080", rgb: {r:128, g:128, b:128}, hsl: {h:0, s:0, l:0.5}}
 ```
@@ -211,6 +229,8 @@ var color = Parser.parseRgb("rgb(128,128,128");
 ### parseHsl(color)
 Parse a valid css hsl color into a set of hex, rgb and hsl values
 ```js
+import Parser from "collit"; // or var Parser = Collit.Parser if using in browser
+
 var color = Parser.parseHsl("hsl(240,100%,50%");
 // color => { hex: "#00f", rgb: {r:0, g:0, b:255}, hsl: {h:240, s:1, l:0.5}}
 ```
