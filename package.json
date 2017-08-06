@@ -1,6 +1,6 @@
 {
   "name": "collit",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A modern JavaScript library delivering fast and modular color  utils. (eg. color convertor, css color validator and parser etc.)",
   "main": "dist/collit.js",
   "repository": {
