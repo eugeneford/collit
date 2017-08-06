@@ -41,11 +41,14 @@ There are several modules available in Collit so far:
 
 ## How to Install
 #### Using NPM
+To use Collit with NPM simply call:
 ```js
 npm install --save collit
 ```
 
 #### In Browser
+To use Collit directly in browser simply download this repository and copy dist/collit.js into your project.
+Next, include it on your .html page:
 ```html
 <script src="path/to/your/js/collit.js"></script>
 ```
