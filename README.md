@@ -1,5 +1,16 @@
-# Collit
-A modern JavaScript library delivering fast and modular color  utils. (eg. color convertor, css color validator and parser etc.)
+<h3 align="center">
+  Collit
+</h3>
+
+<p align="center">
+  A modern JavaScript library delivering fast and modular color  utils.
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.org/eugeneford/collit.svg?branch=master">
+    <img src="https://travis-ci.org/eugeneford/collit alt="Build Status">
+  </a>  
+</p>
 
 ## How to Install
 #### Using NPM
