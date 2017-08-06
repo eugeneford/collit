@@ -13,6 +13,9 @@
   <a href='https://coveralls.io/github/eugeneford/collit?branch=master'>
     <img src='https://coveralls.io/repos/github/eugeneford/collit/badge.svg?branch=master' alt='Coverage Status' />
   </a>
+  <a href='https://www.npmjs.com/package/collit'>
+    <img src='https://img.shields.io/npm/v/collit.svg' alt='NPM Version' />
+  </a>
 </p>
 
 ## How to Install
