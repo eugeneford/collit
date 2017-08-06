@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  A modern JavaScript library delivering fast and modular color  utils.
+  A modern JavaScript library delivering fast and modular color utils.
 </p>
 
 <p align="center">
@@ -21,6 +21,25 @@
     <img src='https://img.shields.io/npm/v/collit.svg' alt='NPM Version' />
   </a>
 </p>
+
+## Basic Overview
+Collit is a modern JavaScript library delivering fast and modular color utils.
+
+> Our mission is to create a complete fast, modular and well-documented library for any kind of color operations
+  (eg. parsers, converters, transformers, manipulation etc.).
+
+Library is written completely in ES6, can be used in Node.js or directly in Browser.
+It is well-documented and completely covered* with test specs.
+
+If want to add some features or to suggest any idea, feel free — contributions are always welcome.
+
+<span style="color:grey">\* Excluding webpack bundling definitions and expressions.</span>
+
+## What Included
+There are several modules available in Collit so far:
+* [Converter](#converter) — convert one specific color format into another. (Hex, RGB, HSL)
+* [Validator](#validator) — validate CSS color values eg. #000, rgb(0,0,0), rgba(0,0,0,1), hsl(0,0%,0%) etc.
+* [Parser](#parser) — parse CSS color values to [Color](#color-object) objects.
 
 ## How to Install
 #### Using NPM
