@@ -7,8 +7,11 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/eugeneford/collit.svg?branch=master">
-    <img src="https://travis-ci.org/eugeneford/collit" alt="Build Status">
+  <a href="https://travis-ci.org/eugeneford/collit">
+    <img src="https://travis-ci.org/eugeneford/collit.svg?branch=master" alt="Build Status">
+  </a>
+  <a href='https://coveralls.io/github/eugeneford/collit?branch=master'>
+    <img src='https://coveralls.io/repos/github/eugeneford/collit/badge.svg?branch=master' alt='Coverage Status' />
   </a>
 </p>
 
