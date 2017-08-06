@@ -28,7 +28,7 @@ Collit is a modern JavaScript library delivering fast and modular color utils.
 > Our mission is to create a complete, fast, modular and well-documented library for any kind of color operations
   (eg. parsers, converters, transformers, manipulation etc.).
 
-Library is written completely in ES6, can be used in Node.js or directly in Browser.
+Library can be used both in Node.js and directly in Browser.
 It is well-documented and completely covered with test specs (excluding webpack bundling definitions and expressions).
 
 If you want to add some features or to suggest any idea, feel free — [contributions are always welcome](#contributing-to-collit).
