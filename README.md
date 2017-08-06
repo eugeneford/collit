@@ -29,11 +29,9 @@ Collit is a modern JavaScript library delivering fast and modular color utils.
   (eg. parsers, converters, transformers, manipulation etc.).
 
 Library is written completely in ES6, can be used in Node.js or directly in Browser.
-It is well-documented and completely covered* with test specs.
+It is well-documented and completely covered with test specs (excluding webpack bundling definitions and expressions).
 
 If want to add some features or to suggest any idea, feel free — contributions are always welcome.
-
-<span style="color:grey">\* Excluding webpack bundling definitions and expressions.</span>
 
 ## What Included
 There are several modules available in Collit so far:
@@ -219,6 +217,21 @@ var color = Parser.parseHsl("hsl(240,100%,50%");
 ### parseHsla(color)
 
 ### parseColor(color)
+
+## Contributing to Collit
+Contributions are always welcome.
+Before contributing please read the [code of conduct](https://js.foundation/community/code-of-conduct) &
+[search the issue tracker](https://github.com/eugeneford/collit/issues) (your issue may have already been discussed or fixed).
+
+To contribute, follow next steps:
+* Fork Collit
+* Commit your changes
+* Open a Pull Request.
+
+### Feature Requests
+Feature requests should be submitted in the issue tracker, with a description
+of the expected behavior & use case, where they’ll remain closed until sufficient interest (e.g. 👍 reactions).
+Before submitting a feature request, please search for similar ones in the closed issues.
 
 ## Manifest
 The entire logic of modules is and should be based on use of the Color, LinearGradient and RadialGradient data types.
