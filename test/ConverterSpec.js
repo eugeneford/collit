@@ -1,10 +1,8 @@
 var Converter = Collit.Converter;
 
 describe("Converter Helper", function () {
-
     describe("hexToRgb()", function () {
         it('#1 Successfully converted hex to rgb when hex was in short form ("#333")', function () {
-
             var rgbExpected = {r: 51, g: 51, b: 51};
             expect(Converter.hexToRgb("#333")).toEqual(rgbExpected);
         });

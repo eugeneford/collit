@@ -15,10 +15,10 @@ module.exports = function(config) {
     preprocessors: {
       'dist/collit.js': ['coverage']
     },
-    reporters: ['kjhtml', 'coverage', 'coveralls'],
+    reporters: ['progress', 'coverage'],
     port: 9876,
-    browsers: [],
-    singleRun: false,
-    autoWatch: true
+    browsers: ['PhantomJS'],
+    singleRun: true,
+    captureTimeout: 4 * 60 * 1000
   })
 };
