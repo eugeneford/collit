@@ -15,7 +15,7 @@ module.exports = function(config) {
     preprocessors: {
       'dist/collit.js': ['coverage']
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'coveralls'],
     port: 9876,
     browsers: ['PhantomJS'],
     singleRun: true,
