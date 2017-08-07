@@ -118,8 +118,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (color.length === 4) color = "#" + color[1] + color[1] + color[2] + color[2] + color[3] + color[3];
 
 	    var r = parseInt(color.substring(1, 3), 16);
-	    var g = parseInt(color.substring(5, 7), 16);
-	    var b = parseInt(color.substring(3, 5), 16);
+	    var g = parseInt(color.substring(3, 5), 16);
+	    var b = parseInt(color.substring(5, 7), 16);
 	    return { r: r, g: g, b: b };
 	}
 

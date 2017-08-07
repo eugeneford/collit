@@ -18,8 +18,8 @@ export function hexToRgb(hex) {
     if (color.length === 4 ) color = "#" + color[1] + color[1] + color[2] + color[2] + color[3] + color[3];
 
     const r = parseInt(color.substring(1, 3), 16);
-    const g = parseInt(color.substring(5, 7), 16);
-    const b = parseInt(color.substring(3, 5), 16);
+    const g = parseInt(color.substring(3, 5), 16); 
+    const b = parseInt(color.substring(5, 7), 16);
     return {r, g, b};
 }
 
