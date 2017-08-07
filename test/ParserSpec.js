@@ -860,6 +860,65 @@ describe("Parser Helper", function () {
         rgb: { r: 0, g: 255, b: 0, a: .5 },
         hsl: { h: 120, s: 1, l: .5, a: .5 }
       });
-    })
+    });
+  });
+
+  describe("parseColor(color)", function() {
+    it("Threw a TypeError when color was not a string", function () {
+      expect(function () {
+        Parser.parseColor(123)
+      }).toThrowError(TypeError);
+    });
+
+    it("Threw an Error when invalid color was passed", function () {
+      expect(function () {
+        Parser.parseColor("cmyk(200,200,10)")
+      }).toThrowError(Error);
+    });
+
+    it("Successfully parsed valid css hsla color", function () {
+      expect(Parser.parseColor("hsla( 120, 100%, 50%, .5 )")).toEqual({
+        hex: "#0f0",
+        rgb: { r: 0, g: 255, b: 0, a: .5 },
+        hsl: { h: 120, s: 1, l: .5, a: .5 }
+      });
+    });
+
+    it("Successfully parsed valid css rgba color", function () {
+      expect(Parser.parseColor("rgba( 255, 0, 0, .5 )")).toEqual({
+        hex: "#f00",
+        rgb: { r: 255, g: 0, b: 0, a: .5 },
+        hsl: { h: 0, s: 1, l: .5, a: .5 }
+      });
+    });
+
+    it("Successfully parsed valid css hsl color", function () {
+      expect(Parser.parseColor("hsl( 240, 100%, 50% )")).toEqual({
+        hex: "#00f",
+        rgb: { r: 0, g: 0, b: 255 },
+        hsl: { h: 240, s: 1, l: .5 }
+      });
+    });
+
+    it("Successfully parsed valid css rgb color", function () {
+      expect(Parser.parseColor("rgb( 128, 128, 128 )")).toEqual({
+        hex: "#808080",
+        rgb: { r: 128, g: 128, b: 128 },
+        hsl: { h: 0, s: 0, l: .5 }
+      });
+    });
+
+    it("Successfully parsed a hex color in short form (#000)", function () {
+      expect(Parser.parseColor("#000")).toEqual({
+        hex: "#000",
+        rgb: { r: 0, g: 0, b: 0 },
+        hsl: { h: 0, s: 0, l: 0 }
+      });
+    });
+
+    it("Correctly parsed \"teal\" color", function () {
+      var color = Parser.parseColor("teal");
+      expect(color).toEqual({hex: "#008080", rgb: {r: 0, g: 128, b: 128}, hsl: {h: 180, s: 1, l: .25}});
+    });
   });
 });

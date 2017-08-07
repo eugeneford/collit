@@ -152,3 +152,30 @@ export function parseHsla(color){
 
   return { hex, rgb, hsl };
 }
+
+/**
+ * Parse a valid css color into a set of hex, rgb and hsl values
+ * @param color - a string to be parsed
+ * @throws TypeError — if type of value passed to function was not a string
+ * @throws Error — if color name passed to function was not a valid css color
+ * @returns {{hex: string, rgb: {r: number, g:number, b:number, a:number}, hsl: {h: number, s:number, l:number, a:number}}}
+ *
+ * @example
+ * var color = Parser.parseColor("hsla(0,255,0,.5)"); // color => { hex: "#0f0", rgb: {r:0, g:255, b:0, a: 0.5}, hsl: {h:120, s:1, l: 0.5, a: 0.5} }
+ * var anotherColor = Parser.parseColor("rgba(255,0,0,.5)"); // color => { hex: "#f00", rgb: {r:255, g:0, b:0, a: 0.5}, hsl: {h:0, s:1, l: 0.5, a: 0.5} }
+ * var oneMoreColor = Parser.parseColor("black"); // color => { hex: "#000", rgb: {r:0, g:0, b:0}, hsl: {h:0, s:0, l:0}}
+ */
+export function parseColor(color){
+  if (typeof color !== "string") throw new TypeError("Type of target color should be a String");
+
+  // Try to parse one of the available css color formats
+  if(Validator.isColorName(color)) return parseColorName(color);
+  if(Validator.isHex(color)) return parseHex(color);
+  if(Validator.isRgb(color)) return parseRgb(color);
+  if(Validator.isRgba(color)) return parseRgba(color);
+  if(Validator.isHsl(color)) return parseHsl(color);
+  if(Validator.isHsla(color)) return parseHsla(color);
+
+  // Otherwise, throw an Error
+  throw new Error("Invalid css color");
+}
